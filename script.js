@@ -48,3 +48,22 @@ function same1(arr1, arr2) {
 }
 
 console.log(same1([1, 2, 3, 2], [9, 1, 4, 4]));
+
+function validAnagram(str1, str2) {
+    if (str1.length !== str2.length)
+        return false
+    const obj1 = {}
+    for (let c of str1)
+        obj1[c] = (obj1[c] || 0) + 1;
+    for (let c of str2) {
+        if (!(c in obj1))
+            return false;
+        if (obj1[c] === 0)
+            return false;
+        obj1[c] = obj1[c] - 1;
+    }
+    return true;
+}
+console.log(validAnagram("rat", "atr"));
+
+
