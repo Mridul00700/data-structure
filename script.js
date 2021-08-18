@@ -67,3 +67,40 @@ function validAnagram(str1, str2) {
 console.log(validAnagram("rat", "atr"));
 
 
+// Unique Numbers -->
+
+const countUnique = (arr) => {
+    let count = arr.length === 0 ? 0 : 1;
+    let i = 0;
+    let j = 1;
+    while (j < arr.length) {
+        if (arr[i] !== arr[j]) {
+            count++;
+            i = j;
+            j++
+        }
+        else {
+            j++;
+        }
+    }
+    return count;
+}
+console.log(countUnique([]));
+
+// Without using an extra variable.
+function countUniqueValues(arr) {
+
+    let i = 0;
+    let j = 1;
+    while (j < arr.length) {
+        if (arr[i] !== arr[j]) {
+            ++i;
+            arr[i] = arr[j]
+            ++j
+        } else {
+            j++;
+        }
+    }
+    return arr.length === 0 ? 0 : i + 1;
+}
+console.log(countUniqueValues([1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 7, 7, 7, 7, 7, 7]));
