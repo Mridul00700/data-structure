@@ -130,3 +130,53 @@ function maxSumSubArray(arr, n) {
 }
 
 console.log(maxSumSubArray([1, 2, 5, 2, 8, 1, 5], 4));
+
+//  Alternate Less memory and more efficient
+
+function maxSum(arr, n) {
+    let max = 0
+    let sum = 0;
+    if (arr.length < n)
+        return null;
+    for (let i = 0; i < n; i++) {
+        max += arr[i]
+    }
+    sum = max;
+    for (let i = n; i < arr.length; i++) {
+        sum = sum - arr[i - n] + arr[i];
+        max = Math.max(sum, max);
+    }
+    return max;
+}
+
+console.log(maxSum([1, 2, 5, 2, 8, 1, 5], 4));
+
+
+//  Frequency counter -->
+function sameFrequency(a, b) {
+    let lena = 0;
+    let lenb = 0;
+    let obj = {}
+    while (a > 0) {
+        let d = a % 10;
+        obj[d] = (obj[d] || 0) + 1;
+        a = Math.floor(a / 10);
+        lena++;
+    }
+    console.log(obj);
+    while (b > 0) {
+        let d = b % 10;
+        if (!(d in obj)) {
+            return false;
+        }
+        if (obj[d] === 0) {
+            return false;
+        }
+        obj[d] = obj[d] - 1;
+        b = Math.floor(b / 10);
+        lenb++;
+    }
+    return lena !== lenb ? false : true;
+}
+
+console.log(sameFrequency(31233344, 44333321));
