@@ -104,3 +104,29 @@ function countUniqueValues(arr) {
     return arr.length === 0 ? 0 : i + 1;
 }
 console.log(countUniqueValues([1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 7, 7, 7, 7, 7, 7]));
+
+// Max sum of n consecutive numbers -->
+
+function maxSumSubArray(arr, n) {
+
+    let max = 0;
+    let sum = 0;
+    let j = 0;
+    let i = 0;
+    while (j < arr.length) {
+        if ((j - i) === n) {
+            if (sum > max)
+                max = sum;
+            sum = 0;
+            ++i;
+            j = i;
+        }
+        else {
+            sum += arr[j];
+            j++;
+        }
+    }
+    return max === 0 ? null : max;
+}
+
+console.log(maxSumSubArray([1, 2, 5, 2, 8, 1, 5], 4));
