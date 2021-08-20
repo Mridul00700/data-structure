@@ -196,3 +196,23 @@ function averagePair(arr, t) {
     }
     return false;
 }
+
+
+function isSubsequence(str1, str2) {
+    // good luck. Add any arguments you deem necessary.
+    let i = 0;
+    let j = 0;
+    while (j < str2.length) {
+        if (str1[i] === str2[j]) {
+            i++;
+            j++;
+        }
+        else {
+            j++;
+        }
+        if (i === str1.length)
+            return true;
+    }
+    return false;
+}
+
