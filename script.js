@@ -269,8 +269,10 @@ function findLongestSubstring(str) {
             start = Math.max(start, obj[char])
         }
         longest = Math.max(longest, (i - start + 1))
+        console.log(longest);
         obj[char] = i + 1;
     }
     return longest
 
 }
+console.log(findLongestSubstring("thecatinthehat"));
