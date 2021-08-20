@@ -180,3 +180,19 @@ function sameFrequency(a, b) {
 }
 
 console.log(sameFrequency(31233344, 44333321));
+
+function averagePair(arr, t) {
+    // add whatever parameters you deem necessary - good luck!
+    let i = 0
+    let avg = 0;
+    let j = arr.length - 1;
+    while (i < j) {
+        avg = (arr[i] + arr[j]) / 2;
+        if (avg === t)
+            return true
+        if (avg < t)
+            i++;
+        else j--;
+    }
+    return false;
+}
