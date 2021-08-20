@@ -232,3 +232,25 @@ function maxSubarraySum(arr, n) {
     }
     return max;
 }
+
+function minSubArrayLen(arr, n) {
+    let i = 0;
+    let j = 0;
+    let sum = 0;
+    let min = Infinity;
+    while (i < arr.length) {
+        if (sum < n && j < arr.length) {
+            sum += arr[j];
+            j++;
+        }
+        else if (sum >= n) {
+            min = Math.min(min, j - i)
+            sum -= arr[i]
+            i++
+        }
+        else {
+            break;
+        }
+    }
+    return min === Infinity ? 0 : min
+}
