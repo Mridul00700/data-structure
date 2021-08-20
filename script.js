@@ -216,3 +216,19 @@ function isSubsequence(str1, str2) {
     return false;
 }
 
+function maxSubarraySum(arr, n) {
+    // add whatever parameters you deem necessary - good luck!
+    let sum = 0;
+    let max = 0;
+    if (arr.length < n)
+        return null;
+    for (let i = 0; i < n; i++) {
+        sum += arr[i]
+    }
+    max = sum;
+    for (let i = n; i < arr.length; i++) {
+        sum += arr[i] - arr[i - n];
+        max = Math.max(max, sum);
+    }
+    return max;
+}
