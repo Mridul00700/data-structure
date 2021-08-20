@@ -254,3 +254,23 @@ function minSubArrayLen(arr, n) {
     }
     return min === Infinity ? 0 : min
 }
+
+
+
+function findLongestSubstring(str) {
+    // add whatever parameters you deem necessary - good luck!
+    let obj = {};
+    let char;
+    let longest = 0;
+    let start = 0;
+    for (let i = 0; i < str.length; i++) {
+        char = str[i];
+        if (obj[char]) {
+            start = Math.max(start, obj[char])
+        }
+        longest = Math.max(longest, (i - start + 1))
+        obj[char] = i + 1;
+    }
+    return longest
+
+}
