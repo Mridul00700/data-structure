@@ -286,3 +286,27 @@ function power(a, b) {
     return a * power(a, (b - 1))
 
 }
+
+let a = 0;
+let b = 1;
+let c = 0;
+
+function fib(n) {
+    if (n === 0)
+        return c;
+    a = b;
+    b = c;
+    c = a + b;
+    return fib(n - 1)
+}
+console.log(fib(10))
+console.log(c);
+
+// Proper without variables
+function fib1(n) {
+    if (n <= 2)
+        return 1
+    return (fib1(n - 1) + fib1(n - 2))
+}
+
+console.log(fib1(4));
