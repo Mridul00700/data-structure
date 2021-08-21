@@ -310,3 +310,9 @@ function fib1(n) {
 }
 
 console.log(fib1(4));
+
+function reverse(str) {
+    if (str.length === 0)
+        return ''
+    return str[str.length - 1].concat(reverse(str.slice(0, -1)))
+}
