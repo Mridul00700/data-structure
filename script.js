@@ -316,3 +316,24 @@ function reverse(str) {
         return ''
     return str[str.length - 1].concat(reverse(str.slice(0, -1)))
 }
+
+let str1 = ""
+let length = 0;
+function isPalindrome(str) {
+    // add whatever parameters you deem necessary - good luck!
+    length = Math.max(str.length, length);
+    if (str.length === 0) {
+        return
+    }
+    str1 += str[str.length - 1];
+    isPalindrome(str.slice(0, -1))
+    console.log(str1, str);
+    if (str1 !== str && str.length === length)
+        return false
+    if (str1 === str)
+        return true
+}
+
+console.log(isPalindrome("tacocat"));
+
+
