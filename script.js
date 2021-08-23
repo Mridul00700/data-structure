@@ -337,3 +337,16 @@ function isPalindrome(str) {
 console.log(isPalindrome("tacocat"));
 
 
+// Pure recursion -->
+function isPalindrome(str) {
+    if (str.length <= 1)
+        return true;
+    let first = str[0];
+    let last = str[str.length - 1];
+    if (first === last) {
+        let str1 = str.substring(1, str.length - 1);
+        return isPalindrome(str1)
+    } else {
+        return false
+    }
+}
