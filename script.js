@@ -64,7 +64,27 @@ function validAnagram(str1, str2) {
 }
 console.log(validAnagram("rat", "atr"));
 
+//SumZero - multiple pointer pattern
 
+const array = [-5,-3,-2,1,3,6];
+
+function sumZero (arr) {
+  let left =0;
+  let right = arr.length -1;
+  
+  while(left < right){
+    if(arr[left] + arr[right] ===0) {
+      return [arr[left], arr[right]];
+    }
+    if(arr[left] + arr[right] > 0){
+      right--;
+    }else {
+      left++;
+    }
+  }
+}
+
+console.log(sumZero(array))
 
 
 // Unique Numbers -->
