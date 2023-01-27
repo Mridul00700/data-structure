@@ -123,6 +123,21 @@ function countUniqueValues(arr) {
     }
     return arr.length === 0 ? 0 : i + 1;
 }
+
+const countUniqueValueCheck = (arr) => {
+    if (arr.length === 0) {
+    return 0
+    }
+    let i=0;
+    for (let j=1; j < arr.length; j++){
+        if(arr[i] !== arr[j]){
+            ++i;
+            arr[i] = arr[j];
+        }
+    }
+    return i + 1;
+}
+
 console.log(countUniqueValues([1, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6, 7, 7, 7, 7, 7, 7]));
 
 // Max sum of n consecutive numbers -->
@@ -171,6 +186,33 @@ function maxSum(arr, n) {
 
 console.log(maxSum([1, 2, 5, 2, 8, 1, 5], 4));
 
+//Binary Search
+const arr = [1,2,3,4,5,6,10,15,22,24,66,73,343,346,766];
+
+const findPos = (arr, num) => {
+    let min =0;
+    let max =arr.length;
+    
+    while(min <= max) {
+    let middle = Math.floor((min+max)/2);
+    
+    if(arr[middle] === num){
+        return middle;
+    }
+    if(arr[middle] > num){
+        max = middle-1;
+    }
+    if(arr[middle] < num){
+        min = middle+1;
+    }
+    console.log(middle)
+    }
+    console.log("not found!")
+    return undefined;
+    
+}
+
+console.log(findPos(arr, 66));
 
 //  Frequency counter -->
 function sameFrequency(a, b) {
