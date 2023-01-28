@@ -321,24 +321,21 @@ function minSubArrayLen(arr, n) {
 
 function findLongestSubstring(str) {
     // add whatever parameters you deem necessary - good luck!
-    let obj = {};
+    let objChar = {};
     let char;
     let longest = 0;
-    let start = 0;
+    let start = 0; // tracks the starting position of the current substring. Resets when we encouter duplicate character
     for (let i = 0; i < str.length; i++) {
         char = str[i];
-        if (obj[char]) {
-            start = Math.max(start, obj[char])
+        if (objChar[char]) {
+            start = Math.max(start, objChar[char]) // resetting start to beginning of new substring or doing nothing as the character is out of the scope of current calculation.
         }
-        longest = Math.max(longest, (i - start + 1))
-        console.log(longest);
-        obj[char] = i + 1;
+        longest = Math.max(longest, (i - start + 1)) // calculating max by subtrating starting position of current substring with current position to give length of substring.
+        objChar[char] = i + 1; //storing position of the character encountered / updating the position in case of duplicate.
     }
-    return longest
-
+    return longest;
 }
 console.log(findLongestSubstring("thecatinthehat"));
-
 
 function power(a, b) {
     if (b == 0)
