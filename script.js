@@ -166,7 +166,7 @@ function maxSumSubArray(arr, n) {
 
 console.log(maxSumSubArray([1, 2, 5, 2, 8, 1, 5], 4));
 
-//  Alternate Less memory and more efficient
+//  Alternate Less memory and more efficient technique
 
 function maxSum(arr, n) {
     let max = 0
