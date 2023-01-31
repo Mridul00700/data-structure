@@ -422,3 +422,28 @@ function linerSearch(arr, val){
     }
     return -1;
 }
+
+// Binary Search
+
+function binarySearch(arr, val) {
+    let l = 0;
+    let r = arr.length-1;
+    let m = 0;
+    while( l <= r) {
+        m = Math.floor((l + r) /2);
+        console.log(l,r,m)
+        if(arr[m] < val){
+            console.log("bigger")
+            l = m+1;
+        }
+        else if(arr[m] > val){
+            console.log("smaller")
+            r = m-1;
+        }
+        else {
+            return m;
+        }
+    }
+    return -1;
+}
+console.log(binarySearch([1,2,3,4,5],2))
