@@ -447,3 +447,25 @@ function binarySearch(arr, val) {
     return -1;
 }
 console.log(binarySearch([1,2,3,4,5],2))
+
+
+// Linear search for substring in string
+
+function search(str, sub){
+    let n =0;
+
+    for(let i=0; i < str.length; i++) {
+        if(str[i]===sub[0]){
+            n++;
+            for (let j=1; j<sub.length; j++){
+                if(str[i+j] !== sub[j]){
+                    n--;
+                    break;
+                }
+            }
+        }
+    }
+    return n;
+}
+
+console.log(search("wowomgzomg", 'omg'));
