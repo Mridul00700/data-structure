@@ -449,7 +449,7 @@ function binarySearch(arr, val) {
 console.log(binarySearch([1,2,3,4,5],2))
 
 
-// Linear search for substring in string
+// Linear search for substring in a string 
 
 function search(str, sub){
     let n =0;
