@@ -497,4 +497,30 @@ function bubbleSort (arr) {
     console.log(arr);
 }
 
-bubbleSort([7,3,2,6,1,7,199,346,112,55,67,885,22,35,67,32])
+// bubbleSort([7,3,2,6,1,7,199,346,112,55,67,885,22,35,67,32])
+bubbleSort([1,2,3,4,5,6,7,8,8,9,9,10,11,12,13,15,16,16,17,18,20,19])
+
+// Bubble Sort for almost sorted array. 
+console.log("Almost Sorted");
+
+function bubbleSortAlmostSorted (arr) {
+    let flag=0;
+    for(let i = 1; i< arr.length; i++){
+        flag=0;
+        for(let j=0; j< arr.length - i; j++ ){
+            console.log(arr, arr[j], arr[j+1])
+            if(arr[j] > arr[j+1]){
+                flag=1;
+                [arr[j], arr[j+1]] = [arr[j+1], arr[j]];
+            }
+        }
+        if(flag===0){
+            break;
+        }
+    }
+    console.log(arr);
+}
+
+bubbleSortAlmostSorted([1,2,3,4,5,6,7,8,8,9,9,10,11,12,13,15,16,16,17,18,20,19])
+
+
