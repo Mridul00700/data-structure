@@ -488,13 +488,13 @@ console.log(swap(aa, 1,2));
 function bubbleSort (arr) {
     for(let i = 1; i< arr.length; i++){
         for(let j=0; j< arr.length - i; j++ ){
-            console.log(arr, arr[j], arr[j+1])
+            // console.log(arr, arr[j], arr[j+1])
             if(arr[j] > arr[j+1]){
                 [arr[j], arr[j+1]] = [arr[j+1], arr[j]];
             }
         }
     }
-    console.log(arr);
+    // console.log(arr);
 }
 
 // bubbleSort([7,3,2,6,1,7,199,346,112,55,67,885,22,35,67,32])
@@ -508,7 +508,7 @@ function bubbleSortAlmostSorted (arr) {
     for(let i = 1; i< arr.length; i++){
         flag=0;
         for(let j=0; j< arr.length - i; j++ ){
-            console.log(arr, arr[j], arr[j+1])
+            // console.log(arr, arr[j], arr[j+1])
             if(arr[j] > arr[j+1]){
                 flag=1;
                 [arr[j], arr[j+1]] = [arr[j+1], arr[j]];
@@ -518,9 +518,27 @@ function bubbleSortAlmostSorted (arr) {
             break;
         }
     }
-    console.log(arr);
+    // console.log(arr);
 }
 
 bubbleSortAlmostSorted([1,2,3,4,5,6,7,8,8,9,9,10,11,12,13,15,16,16,17,18,20,19])
 
 
+// Selection Sort
+
+function selectionSort (arr) {
+    let min =0;
+    for(let i=0; i < arr.length; i++){
+        min = i;
+        console.log(arr)
+        for(let j=i+1; j< arr.length; j++){
+            if(arr[min] > arr[j]){
+                min=j;
+            }
+        }
+        [arr[i], arr[min]]=[arr[min], arr[i]];
+    }
+    console.log(arr);
+}
+
+selectionSort([7,3,2,6,1,7,199,346,112,55,67,885,22,35,67,32]);
