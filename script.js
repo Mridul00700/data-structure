@@ -513,21 +513,21 @@ function insertionSort(arr) {
     // let lastPlace = 0;
     let countOfLoops = 0;
   for (let i = 1; i < arr.length; i++) {
-    console.log(arr)
+    // console.log(arr)
     for (let j = i; j > 0; j--) {
         countOfLoops++;
         if(arr[j-1] > arr[j]){
             [arr[j-1], arr[j]] = [arr[j], arr[j-1]];
             // lastPlace = j;
         }
-    }
-  }console.log("Sorted!" ,  arr, "Inside Loops -", countOfLoops)
+    } }
+//   console.log("Sorted!" ,  arr, "Inside Loops -", countOfLoops)
 }
 
 function insertionSortEfficient(arr) {
     let countOfLoops = 0;
   for (let i = 1; i < arr.length; i++) {
-    console.log(arr)
+    // console.log(arr)
     for (let j = i; j > 0; j--) {
         countOfLoops++;
         if(arr[j-1] > arr[j]){
@@ -535,8 +535,8 @@ function insertionSortEfficient(arr) {
         }else {
             break;
         }
-    }   
-  } console.log("Sorted!", arr, "Inside Loops -", countOfLoops);
+    }   }
+//    console.log("Sorted!", arr, "Inside Loops -", countOfLoops);
 }
 
 insertionSort([7, 3, 2, 6, 1, 7, 199, 346, 112, 55, 67, 885, 22, 35, 67, 32]);
@@ -564,7 +564,7 @@ function mergeSorted (arr, arr1) {
     let j=0;
     // let len = arr.length > arr1.length ? arr1.length : arr.length
     for(; i< arr.length && j < arr1.length;){
-        console.log(i,j)
+        // console.log(i,j)
         if(arr[i]> arr1[j]){
             sarr.push(arr1[j])
             j++;
@@ -576,20 +576,40 @@ function mergeSorted (arr, arr1) {
     // for(j=i; j< (len === arr1.length ? arr.length : arr1.length); j++ ){
     //     sarr.push((len === arr1.length ? arr[j] : arr1[j]))
     // }
-    for(let k = (i==arr.length? j : i); k < (i==arr.length? arr1.length : arr.length); k++){
-        sarr.push(i==arr.length? arr1[k] : arr[k])
-    }
+    // for(let k = (i==arr.length? j : i); k < (i==arr.length? arr1.length : arr.length); k++){
+    //     sarr.push(i==arr.length? arr1[k] : arr[k])
+    // }
 
     // Or do this if this seems complex dynamic values :-
-    
-    // for(let k =i; k< arr.length; k++){
-    //     sarr.push(arr[k])
-    // }
-    // for(let k=j; k< arr1.length; k++){
-    //     sarr.push(arr1[k])
-    // }
+
+    for(let k =i; k< arr.length; k++){
+        sarr.push(arr[k])
+    }
+    for(let k=j; k< arr1.length; k++){
+        sarr.push(arr1[k])
+    }
 
     return sarr;
 }
 
-console.log(mergeSorted([1,2,5,7,89,99,100],[6,8,77,93,95,97,101,104,107,156]));
+// console.log(mergeSorted([1,2,5,7,89,99,100],[6,8,77,93,95,97,101,104,107,156]));
+
+//  Merge Sort Algo Enjoying!!! 
+
+function mergeSort (arr){
+    // let length = arr.length;
+
+    if(arr.length <= 1){
+        return arr
+    }
+    let mid = Math.floor(arr.length/2);
+    return mergeSorted(mergeSort(arr.slice(0, mid)), mergeSort(arr.slice(mid, arr.length)));
+
+    // let mid = arr.length;
+    // while(mid > 0){
+    //     mid = Math.floor(mid/2);
+    //     mergeSorted(arr.slice(0, mid), arr.slice(mid, arr))
+    // }
+}
+
+console.log(mergeSort([7, 3, 2, 6, 1, 7, 199, 346, 112, 55, 67, 33, 885, 22, 35, 67, 32]));
