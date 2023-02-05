@@ -541,3 +541,17 @@ function insertionSortEfficient(arr) {
 
 insertionSort([7, 3, 2, 6, 1, 7, 199, 346, 112, 55, 67, 885, 22, 35, 67, 32]);
 insertionSortEfficient([7, 3, 2, 6, 1, 7, 199, 346, 112, 55, 67, 885, 22, 35, 67, 32]);
+
+
+/* 
+Bubble : Sort where the swaps are done everytime with adjacent element and highest value is bubbled to the last place after every loop. (Backended).
+
+Selection : Sort where the swaps are done only at the last with min value stored and moved to the begining of the loop (i.e -> first place) hence min value is selected and put
+at the first place of loops. (FrontEnded).
+
+Insertion: Sort where the swaps are done in an small sample space which is in front of the index of the loop we are going through. Hence we create sorted array as we go through
+and and put that number which is the index where it belongs on the sorted array by doing swaps and breaking if the number is smaller than the index, as the index is at the right place
+because we are dealing with sorted array. 
+*/
+
+
