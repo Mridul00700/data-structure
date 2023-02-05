@@ -555,3 +555,41 @@ because we are dealing with sorted array.
 */
 
 
+// Merge Sort 
+//Merge and split and do the sort
+//Merging two sorted array 
+function mergeSorted (arr, arr1) {
+    let sarr = [];
+    let i=0;
+    let j=0;
+    // let len = arr.length > arr1.length ? arr1.length : arr.length
+    for(; i< arr.length && j < arr1.length;){
+        console.log(i,j)
+        if(arr[i]> arr1[j]){
+            sarr.push(arr1[j])
+            j++;
+        }else{
+            sarr.push(arr[i])
+            i++
+        }
+    }
+    // for(j=i; j< (len === arr1.length ? arr.length : arr1.length); j++ ){
+    //     sarr.push((len === arr1.length ? arr[j] : arr1[j]))
+    // }
+    for(let k = (i==arr.length? j : i); k < (i==arr.length? arr1.length : arr.length); k++){
+        sarr.push(i==arr.length? arr1[k] : arr[k])
+    }
+
+    // Or do this if this seems complex dynamic values :-
+    
+    // for(let k =i; k< arr.length; k++){
+    //     sarr.push(arr[k])
+    // }
+    // for(let k=j; k< arr1.length; k++){
+    //     sarr.push(arr1[k])
+    // }
+
+    return sarr;
+}
+
+console.log(mergeSorted([1,2,5,7,89,99,100],[6,8,77,93,95,97,101,104,107,156]));
