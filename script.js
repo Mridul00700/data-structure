@@ -613,3 +613,7 @@ function mergeSort (arr){
 }
 
 console.log(mergeSort([7, 3, 2, 6, 1, 7, 199, 346, 112, 55, 67, 33, 885, 22, 35, 67, 32]));
+
+
+//Quick Sort 
+
