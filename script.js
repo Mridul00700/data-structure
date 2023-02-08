@@ -635,9 +635,21 @@ function pivotHelper(arr, start=0, end) {
   return pivotIndex;
 }
 let ar = [16,8,2,1,5,7,6,3,9,10,14,17,19,23,4]
-console.log(pivotHelper(ar));
-console.log(ar)
+// console.log(pivotHelper(ar));
+// console.log(ar)
 
+function quickSort (arr, left =0, right = arr.length-1) {
 
+  let index = pivotHelper(arr, left, right);
+
+    if(left >= right ){
+      return arr
+    }
+    quickSort(arr, left, index-1);
+    quickSort(arr, index+1, right);
+
+}
+quickSort(ar)
+console.log(ar, "Sorted");
 
 
