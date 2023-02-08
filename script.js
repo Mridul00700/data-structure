@@ -626,8 +626,9 @@ function pivotHelper(arr, start=0, end) {
   let pivotIndex = start;
   for(let i = start+1; i<= end; i++){
     if(pivot > arr[i]){
-      [arr[pivotIndex+1], arr[i]]= [arr[i], arr[pivotIndex+1]]
       pivotIndex++;
+      [arr[pivotIndex], arr[i]]= [arr[i], arr[pivotIndex]]
+      
     }
   }
   [arr[start], arr[pivotIndex]] = [arr[pivotIndex], arr[start]]
@@ -636,5 +637,7 @@ function pivotHelper(arr, start=0, end) {
 let ar = [16,8,2,1,5,7,6,3,9,10,14,17,19,23,4]
 console.log(pivotHelper(ar));
 console.log(ar)
+
+
 
 
