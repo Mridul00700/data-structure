@@ -653,3 +653,75 @@ quickSort(ar)
 console.log(ar, "Sorted");
 
 
+// Radix Sort 
+// Special Sorting algo
+
+function getNumAtIndex (num, pos ) {
+ 
+  // console.log(num, pos, Math.floor(num / (Math.pow(10, pos))))
+  return (Math.floor(num / Math.pow(10, pos))) % (10)
+} 
+
+// console.log("get number at index 3",getNumAtIndex(15762467,7));
+
+const digitCount = (num) => {
+  // console.log(num)
+  let c =0;
+  while(num >0){
+    c++;
+    num = Math.floor(num /10); 
+  }
+  return c
+
+}
+
+// console.log(digitCount(1412141))
+
+const largestDigitCount = (arr) => {
+  let max =0;
+  let temp =0;
+for(let i=0; i< arr.length; i++){
+  temp = digitCount(arr[i])
+  if(max < temp)
+  {
+    max = temp
+  }
+}
+return max;
+}
+
+// console.log(largestDigitCount([12312,12,3,424,4212,1412412,12123,1212,414]))
+
+function radixSort (arr) {
+
+  let loop = largestDigitCount(arr);
+  // console.log(loop)
+  for(let i=0; i< loop; i++){
+    let ar = Array.from({length: 10}, ()=> []);
+    for(let j=0; j< arr.length; j++){
+      // num = getNumAtIndex(arr[j], i);
+      // obj[num].push(arr[j]);
+      ar[getNumAtIndex(arr[j], i)].push(arr[j])
+      // if(ar[num]){  
+      //   console.log("exist",ar[num])
+      // ar[num] =  [...ar[num], arr[j]]
+      // }
+      // else {
+      //   console.log("non exist",ar[num])
+      //   ar[num] = [arr[j]];
+      // }
+      // for(let l=0; l<10; l++){
+      //   arr[l]
+      // }
+    }
+    arr= [].concat(...ar);
+    // console.log("m arr", ar)
+    // arr = ar.flat();
+    //   // arr = [...ar[0],...ar[1],...ar[2],...ar[3],...ar[4],...ar[5],...ar[6],...ar[7],...ar[8],...ar[9]]; 
+    //   // console.log("arr", arr) 
+    //   console.log("finish", arr)
+  }
+  return arr
+}
+let checkArray = [16,8,2,1,5,7,6,3,9,10,14,17,19,23,4,3434,535,23,66,666,343,2323]
+console.log(radixSort(checkArray));
