@@ -860,8 +860,36 @@ class Node {
   }
 }
 
-const first = new Node("abc");
+// const first = new Node("abc");
 
-first.next = new Node("def");
+// first.next = new Node("def");
+// first.next.next = new Node("ghi");
+// console.log(first);
 
-console.log(first)
+class SinglyLinkedList {
+  constructor(){
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+
+  push (val) {
+    if(!this.head){
+    this.head = new Node(val);
+    this.tail = this.head;
+    }else {
+      this.tail.next = new Node(val);
+      this.tail = this.tail.next;
+    }
+    this.length +=1;
+  }
+
+}
+
+const list = new SinglyLinkedList();
+
+list.push("Check this out!");
+list.push("second element!");
+list.push("third element!");
+list.push("fourth element!");
+console.log(list)
