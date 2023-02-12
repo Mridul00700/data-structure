@@ -725,3 +725,59 @@ function radixSort (arr) {
 }
 let checkArray = [16,8,2,1,5,7,6,3,9,10,14,17,19,23,4,3434,535,23,66,666,343,2323]
 console.log(radixSort(checkArray));
+
+// Detour to OOPs 
+
+
+// class Car {
+//   constructor(make, model, color, size){
+//       this.type = 'car';
+//       this.make = make;
+//       this.model = model;
+//       this.color = color;
+//       this.size = size;
+      
+//   }
+//   getSize = () => {
+//        return `The size of the ${this.model} model ${this.type} is ${this.size}`
+//    }    
+//   getModel = ()=> {
+//       return `The model is ${this.model}`;
+//   }
+  
+//   getColor = () => {
+//       return `The color of the ${this.type} is ${this.color}`
+//   }
+// }
+
+// class Bus {
+//    constructor(make, model, color,size ){
+//        this.make = make;
+//        this.color = color;
+//        this.model = model;
+//        this.size = size;
+//        this.type = 'bus';
+//    }
+//    getSize = () => {
+//        return `The size of the ${this.model} model ${this.type} is ${this.size}`
+//    }     
+//    getColor = () => {
+//       return `The color of the ${this.type} is ${this.color}`
+//   }
+// }
+
+// const newCar1 = new Car('1981', 'sedan', 'blue', 'long')
+// const newCar2 = new Car('1999', 'compact', 'black', 'small')
+// const newBus1 = new Bus('1967', 'load', 'orange', 'big')
+// const newBus2 = new Bus('2001', 'pulling', 'red', 'medium')
+
+
+
+// console.log(newCar1.getSize());
+// console.log(newCar1.getColor());
+// console.log(newCar2.getSize());
+// console.log(newCar2.getColor());
+// console.log(newBus1.getSize());
+// console.log(newBus1.getColor());
+// console.log(newBus2.getSize());
+// console.log(newBus2.getColor());
