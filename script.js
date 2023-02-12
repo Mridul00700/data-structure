@@ -845,3 +845,23 @@ console.log(radixSort(checkArray));
 // console.log(newBus2.getSize());
 // console.log(newBus2.getColor());
 // console.log(newBus2.getPower());
+
+
+
+//Linked List 
+// DS with head tail and length property
+// Consists of nodes, each node contains data and pointer to next node or null 
+
+
+class Node {
+  constructor(val){
+    this.val = val;
+    this.next = null;
+  }
+}
+
+const first = new Node("abc");
+
+first.next = new Node("def");
+
+console.log(first)
