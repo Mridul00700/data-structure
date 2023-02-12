@@ -781,3 +781,67 @@ console.log(radixSort(checkArray));
 // console.log(newBus1.getColor());
 // console.log(newBus2.getSize());
 // console.log(newBus2.getColor());
+
+
+//Using Inheritance
+
+// class Automobile {
+//   constructor(make, model, color, size,power){
+//       this.make = make;
+//       this.model = model;
+//       this.color = color;
+//       this.size = size;
+//       this.power = power;
+//   }
+//    getPower = () => `The power of the ${this.type} of type ${this.model} is ${this.power}`
+   
+//        getSize = () => {
+//        return `The size of the ${this.model} model ${this.type} is ${this.size}`
+//    }    
+//   getModel = ()=> {
+//       return `The model is ${this.model}`;
+//   }
+  
+//   getColor = () => {
+//       return `The color of the ${this.type} is ${this.color}`
+//   }
+// }
+
+
+// class Car extends Automobile {
+//   constructor(make, model, color, size, power){
+//       super(make, model, color, size, power)
+//       this.type = 'car';
+      
+//   }
+// }
+
+// class Bus extends Automobile {
+//    constructor(make, model, color,size, power){
+//        super(make, model, color, size, power)
+//        this.type = 'bus';
+//    }
+// }
+
+// const newCar1 = new Car('1981', 'sedan', 'blue', 'long', 1000)
+// const newCar2 = new Car('1999', 'compact', 'black', 'small', 600)
+// const newBus1 = new Bus('1967', 'load', 'orange', 'big', 2000)
+// const newBus2 = new Bus('2001', 'pulling', 'red', 'medium',1500)
+
+
+
+
+
+// console.log(newCar1.getSize());
+// console.log(newCar1.getColor());
+// console.log(newCar1.getPower());
+// console.log(newCar2.getSize());
+// console.log(newCar2.getColor());
+// console.log(newCar2.getPower());
+
+// console.log(newBus1.getSize());
+// console.log(newBus1.getColor());
+// console.log(newBus1.getPower());
+// console.log(newBus2.getSize());
+// console.log(newBus2.getColor());
+// console.log(newBus2.getPower());
