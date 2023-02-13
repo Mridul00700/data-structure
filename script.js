@@ -882,14 +882,43 @@ class SinglyLinkedList {
       this.tail = this.tail.next;
     }
     this.length +=1;
+    return this
   }
 
-}
+  //pop is done from the last.
+  pop () {
+    if(!this.head){
+      return undefined
+    }
+    let prevNode= this.head;
+    let nextNode = this.head;
+   while(nextNode.next){
+    prevNode = nextNode;
+    nextNode = nextNode.next;
+    } 
+    prevNode.next =null;
+    this.tail = prevNode;
+    this.length -=1;
+    if(this.length === 0){
+      this.head = null;
+      this.tail = null;
+    }
+    return nextNode;
+   }
+
+  }
 
 const list = new SinglyLinkedList();
 
-list.push("Check this out!");
-list.push("second element!");
-list.push("third element!");
-list.push("fourth element!");
-console.log(list)
+console.log(list.push("Check this out!"));
+console.log(list.push("second element!"));
+console.log(list.push("third element!"));
+console.log(list.push("fourth element!"));
+console.log(list.pop());
+console.log(list.pop());
+console.log(list.pop());
+// console.log(list.pop());
+
+
+
+
