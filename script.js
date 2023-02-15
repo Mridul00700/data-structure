@@ -918,7 +918,24 @@ class SinglyLinkedList {
     }
     return remove; 
    }
+
+   unShift (node) {
+    if(!this.head){
+      this.head = node;
+      this.tail = node;
+    }
+    else {
+    node.next = this.head;
+    this.head = node;
+    }
+    this.length +=1;
+    return this
   }
+
+
+  }
+
+ 
 
 const list = new SinglyLinkedList();
 
@@ -930,7 +947,9 @@ console.log(list.push("fourth element!"));
 // console.log(list.pop());
 // console.log(list.pop());
 // console.log(list.pop());
-console.log(list.shift());
+// console.log(list.shift());
+console.log(list.unShift(new Node("ZERO!")));
+
 
 
 
