@@ -913,6 +913,9 @@ class SinglyLinkedList {
     let remove = this.head;
     this.head = this.head.next;
     this.length -= 1;
+    if(this.length === 0){
+      this.tail = null;
+    }
     return remove; 
    }
   }
