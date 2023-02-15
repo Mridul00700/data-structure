@@ -912,6 +912,7 @@ class SinglyLinkedList {
     }
     let remove = this.head;
     this.head = this.head.next;
+    this.length -= 1;
     return remove; 
    }
   }
