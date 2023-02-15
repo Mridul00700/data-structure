@@ -906,6 +906,14 @@ class SinglyLinkedList {
     return nextNode;
    }
 
+   shift() {
+    if(!this.head){
+      return undefined
+    }
+    let remove = this.head;
+    this.head = this.head.next;
+    return remove; 
+   }
   }
 
 const list = new SinglyLinkedList();
@@ -914,11 +922,11 @@ console.log(list.push("Check this out!"));
 console.log(list.push("second element!"));
 console.log(list.push("third element!"));
 console.log(list.push("fourth element!"));
-console.log(list.pop());
-console.log(list.pop());
-console.log(list.pop());
 // console.log(list.pop());
-
+// console.log(list.pop());
+// console.log(list.pop());
+// console.log(list.pop());
+console.log(list.shift());
 
 
 
