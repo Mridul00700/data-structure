@@ -860,8 +860,96 @@ class Node {
   }
 }
 
-const first = new Node("abc");
+// const first = new Node("abc");
 
-first.next = new Node("def");
+// first.next = new Node("def");
+// first.next.next = new Node("ghi");
+// console.log(first);
 
-console.log(first)
+class SinglyLinkedList {
+  constructor(){
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+
+  push (val) {
+    if(!this.head){
+    this.head = new Node(val);
+    this.tail = this.head;
+    }else {
+      this.tail.next = new Node(val);
+      this.tail = this.tail.next;
+    }
+    this.length +=1;
+    return this
+  }
+
+  //pop is done from the last.
+  pop () {
+    if(!this.head){
+      return undefined
+    }
+    let prevNode= this.head;
+    let nextNode = this.head;
+   while(nextNode.next){
+    prevNode = nextNode;
+    nextNode = nextNode.next;
+    } 
+    prevNode.next =null;
+    this.tail = prevNode;
+    this.length -=1;
+    if(this.length === 0){
+      this.head = null;
+      this.tail = null;
+    }
+    return nextNode;
+   }
+
+   shift() {
+    if(!this.head){
+      return undefined
+    }
+    let remove = this.head;
+    this.head = this.head.next;
+    this.length -= 1;
+    if(this.length === 0){
+      this.tail = null;
+    }
+    return remove; 
+   }
+
+   unShift (node) {
+    if(!this.head){
+      this.head = node;
+      this.tail = node;
+    }
+    else {
+    node.next = this.head;
+    this.head = node;
+    }
+    this.length +=1;
+    return this
+  }
+
+
+  }
+
+ 
+
+const list = new SinglyLinkedList();
+
+console.log(list.push("Check this out!"));
+console.log(list.push("second element!"));
+console.log(list.push("third element!"));
+console.log(list.push("fourth element!"));
+// console.log(list.pop());
+// console.log(list.pop());
+// console.log(list.pop());
+// console.log(list.pop());
+// console.log(list.shift());
+console.log(list.unShift(new Node("ZERO!")));
+
+
+
+
