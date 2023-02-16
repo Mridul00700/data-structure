@@ -932,8 +932,22 @@ class SinglyLinkedList {
     return this
   }
 
-
+  get (index) {
+    if(index < 0 || index >=  this.length){
+      return null;
+    }
+    if(!this.head){
+      return null;
+    }
+    let count = 0;
+    let node = this.head;
+    while(count < index){
+      node = node.next;
+      count++;
+    }
+    return node;
   }
+}
 
  
 
@@ -948,8 +962,8 @@ console.log(list.push("fourth element!"));
 // console.log(list.pop());
 // console.log(list.pop());
 // console.log(list.shift());
-console.log(list.unShift(new Node("ZERO!")));
-
+// console.log(list.unShift(new Node("ZERO!")));
+console.log(list.get(2));
 
 
 
