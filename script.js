@@ -978,25 +978,19 @@ class SinglyLinkedList {
 
   remove(index){
     if(index ===0 ){
-      if(this.shift()){
-        return true;
-      }
-      return false;
+      this.shift()
     }
     if(index >= this.length || index < 0){
       return false;
     }
     if(index === (this.length -1)){
-      if(this.pop()){
-        return true;
-      }
-      return false;
+      this.pop()
     }
     let prevNode = this.get(index-1);
-    let currNode = this.get(index);
+    let currNode = prevNode.next;
     prevNode.next = currNode.next;
     this.length -= 1;
-    return true
+    return currNode;
   }
 }
 
