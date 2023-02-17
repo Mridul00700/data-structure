@@ -947,9 +947,17 @@ class SinglyLinkedList {
     }
     return node;
   }
+
+  set(index, value) {
+    let node = this.get(index);
+    if(!node){
+      return false
+    }
+    node.val = value;
+    return true;
+  }
 }
 
- 
 
 const list = new SinglyLinkedList();
 
@@ -964,6 +972,7 @@ console.log(list.push("fourth element!"));
 // console.log(list.shift());
 // console.log(list.unShift(new Node("ZERO!")));
 console.log(list.get(2));
+console.log(list.set(7, "changed value"));
 
 
 
