@@ -960,13 +960,13 @@ class SinglyLinkedList {
   insert(index, value) {
     const newNode = new Node(value);
     if(index ===0){
-      this.length +=1;
       return this.unShift(newNode);
     }
     let prevNode = this.get(index-1);
     if(!prevNode){
       return false;
     }
+    // or you this.push 
     newNode.next = prevNode.next;
     prevNode.next= newNode;
     if(prevNode === this.tail){
@@ -974,6 +974,29 @@ class SinglyLinkedList {
     }
     this.length +=1;
     return this;
+  }
+
+  remove(index){
+    if(index ===0 ){
+      if(this.shift()){
+        return true;
+      }
+      return false;
+    }
+    if(index >= this.length || index < 0){
+      return false;
+    }
+    if(index === (this.length -1)){
+      if(this.pop()){
+        return true;
+      }
+      return false;
+    }
+    let prevNode = this.get(index-1);
+    let currNode = this.get(index);
+    prevNode.next = currNode.next;
+    this.length -= 1;
+    return true
   }
 }
 
@@ -992,7 +1015,8 @@ console.log(list.push("fourth element!"));
 // console.log(list.unShift(new Node("ZERO!")));
 console.log(list.get(2));
 console.log(list.set(7, "changed value"));
-console.log(list.insert(4, "Inserted value value"));
+console.log(list.insert(-2, "Inserted value value"));
+console.log(list.remove(3));
 
 
 
