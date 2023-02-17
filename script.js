@@ -956,6 +956,25 @@ class SinglyLinkedList {
     node.val = value;
     return true;
   }
+
+  insert(index, value) {
+    const newNode = new Node(value);
+    if(index ===0){
+      this.length +=1;
+      return this.unShift(newNode);
+    }
+    let prevNode = this.get(index-1);
+    if(!prevNode){
+      return false;
+    }
+    newNode.next = prevNode.next;
+    prevNode.next= newNode;
+    if(prevNode === this.tail){
+      this.tail = newNode
+    }
+    this.length +=1;
+    return this;
+  }
 }
 
 
@@ -973,6 +992,7 @@ console.log(list.push("fourth element!"));
 // console.log(list.unShift(new Node("ZERO!")));
 console.log(list.get(2));
 console.log(list.set(7, "changed value"));
+console.log(list.insert(4, "Inserted value value"));
 
 
 
