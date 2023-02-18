@@ -1078,6 +1078,44 @@ class DoubleLinkedList {
     this.length +=1;
     return this;
   }
+
+  pop(){
+    if(!this.head){
+      return undefined;
+    }
+    let remove = this.tail;
+    if(this.length === 1){
+      this.head = null;
+      this.tail = null;
+    }
+    else{
+    this.tail = this.tail.prev;  // this.tail.prev = remove.prev
+    this.tail.next = null;
+    }
+    remove.prev = null;
+    this.length -= 1;
+
+    return remove;
+  }
+
+  shift(){
+    if(!this.head){
+      return undefined;
+    }
+    let remove = this.head;
+    if(this.length ===1){
+      this.head = null;
+      this.tail = null;
+    }else {
+      this.head = remove.next;
+      this.head.prev = null;
+      // remove.next.prev = this.head;
+    }
+    remove.prev = null;
+    remove.next = null;
+    this.length -= 1;
+    return remove
+  }
 }
 
 const DList = new DoubleLinkedList();
@@ -1087,3 +1125,6 @@ console.log(DList.push("2nd value"))
 console.log(DList.push("3rd value"))
 console.log(DList.push("4th value"))
 console.log(DList.push("5th value"))
+console.log(DList.pop())
+console.log(DList.shift());
+
