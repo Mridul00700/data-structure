@@ -932,10 +932,98 @@ class SinglyLinkedList {
     return this
   }
 
-
+  get (index) {
+    if(index < 0 || index >=  this.length){
+      return null;
+    }
+    if(!this.head){
+      return null;
+    }
+    let count = 0;
+    let node = this.head;
+    while(count < index){
+      node = node.next;
+      count++;
+    }
+    return node;
   }
 
- 
+  set(index, value) {
+    let node = this.get(index);
+    if(!node){
+      return false
+    }
+    node.val = value;
+    return true;
+  }
+
+  insert(index, value) {
+    const newNode = new Node(value);
+    if(index ===0){
+      return this.unShift(newNode);
+    }
+    let prevNode = this.get(index-1);
+    if(!prevNode){
+      return false;
+    }
+    // or you this.push 
+    newNode.next = prevNode.next;
+    prevNode.next= newNode;
+    if(prevNode === this.tail){
+      this.tail = newNode
+    }
+    this.length +=1;
+    return this;
+  }
+
+  remove(index){
+    if(index ===0 ){
+      this.shift()
+    }
+    if(index >= this.length || index < 0){
+      return false;
+    }
+    if(index === (this.length -1)){
+      this.pop()
+    }
+    let prevNode = this.get(index-1);
+    let currNode = prevNode.next;
+    prevNode.next = currNode.next;
+    this.length -= 1;
+    return currNode;
+  }
+
+  reverse() {
+
+// 5  =>  10  =>   15 => 20
+//  null <= 5   <=  10  <=  15  20 
+    this.tail = this.head; 
+
+    let nextNode = this.head; 
+  
+    let currentNode = null;
+    // currentNode.next=null;
+    while(nextNode){
+      let next = nextNode.next; 
+      nextNode.next = currentNode; 
+      currentNode = nextNode;  
+      nextNode = next; 
+    }
+    this.head = currentNode;
+    return this;
+  }
+
+  print() {
+    let arr = [];
+    let curr = this.head;
+    while(curr){
+      arr.push(curr.val);
+      curr = curr.next;
+    }
+    return arr
+  }
+}
+
 
 const list = new SinglyLinkedList();
 
@@ -948,8 +1036,14 @@ console.log(list.push("fourth element!"));
 // console.log(list.pop());
 // console.log(list.pop());
 // console.log(list.shift());
-console.log(list.unShift(new Node("ZERO!")));
-
+// console.log(list.unShift(new Node("ZERO!")));
+// console.log(list.get(2));
+// console.log(list.set(7, "changed value"));
+// console.log(list.insert(-2, "Inserted value value"));
+// console.log(list.remove(3));
+console.log("Before Reverse", list.print());
+console.log(list.reverse());
+console.log("After Reverse", list.print());
 
 
 
