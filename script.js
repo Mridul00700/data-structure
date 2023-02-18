@@ -999,10 +999,10 @@ class SinglyLinkedList {
 //  null <= 5   <=  10  <=  15  20 
     this.tail = this.head; 
 
-    let nextNode = this.head.next; 
+    let nextNode = this.head; 
   
-    let currentNode = this.head;
-    currentNode.next=null;
+    let currentNode = null;
+    // currentNode.next=null;
     while(nextNode){
       let next = nextNode.next; 
       nextNode.next = currentNode; 
@@ -1011,6 +1011,16 @@ class SinglyLinkedList {
     }
     this.head = currentNode;
     return this;
+  }
+
+  print() {
+    let arr = [];
+    let curr = this.head;
+    while(curr){
+      arr.push(curr.val);
+      curr = curr.next;
+    }
+    return arr
   }
 }
 
@@ -1031,7 +1041,9 @@ console.log(list.push("fourth element!"));
 // console.log(list.set(7, "changed value"));
 // console.log(list.insert(-2, "Inserted value value"));
 // console.log(list.remove(3));
+console.log("Before Reverse", list.print());
 console.log(list.reverse());
+console.log("After Reverse", list.print());
 
 
 
