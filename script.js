@@ -992,6 +992,26 @@ class SinglyLinkedList {
     this.length -= 1;
     return currNode;
   }
+
+  reverse() {
+
+// 5  =>  10  =>   15 => 20
+//  null <= 5   <=  10  <=  15  20 
+    this.tail = this.head; 
+
+    let nextNode = this.head.next; 
+  
+    let currentNode = this.head;
+    currentNode.next=null;
+    while(nextNode){
+      let next = nextNode.next; 
+      nextNode.next = currentNode; 
+      currentNode = nextNode;  
+      nextNode = next; 
+    }
+    this.head = currentNode;
+    return this;
+  }
 }
 
 
@@ -1007,10 +1027,11 @@ console.log(list.push("fourth element!"));
 // console.log(list.pop());
 // console.log(list.shift());
 // console.log(list.unShift(new Node("ZERO!")));
-console.log(list.get(2));
-console.log(list.set(7, "changed value"));
-console.log(list.insert(-2, "Inserted value value"));
-console.log(list.remove(3));
+// console.log(list.get(2));
+// console.log(list.set(7, "changed value"));
+// console.log(list.insert(-2, "Inserted value value"));
+// console.log(list.remove(3));
+console.log(list.reverse());
 
 
 
