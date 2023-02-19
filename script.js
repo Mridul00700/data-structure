@@ -1156,6 +1156,14 @@ class DoubleLinkedList {
      }
      return res;
   }
+
+  set(index, val){
+    let updateNode = this.get(index);
+    if(updateNode)
+    updateNode.val = val;
+    else return false;
+    return true;
+  }
 }
 
 const DList = new DoubleLinkedList();
@@ -1168,5 +1176,6 @@ console.log(DList.push("5th value"))
 // console.log(DList.pop())
 // console.log(DList.shift());
 console.log(DList.unshift("Here is unshift!"));
-console.log(DList.get(-1));
+console.log(DList.get(4));
+console.log(DList.set(2, "setting 3 to third"));
 
