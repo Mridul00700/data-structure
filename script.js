@@ -1182,6 +1182,26 @@ class DoubleLinkedList {
     }
        return true;
   }
+
+  remove(index){
+    if(index <0 || index >= this.length){
+      return false;
+    }
+    let removeNode;
+    if(index === 0){
+      removeNode =  this.shift();
+    }else if(index === this.length-1){
+      removeNode = this.pop();
+    }else {
+      removeNode = this.get(index);
+      removeNode.prev.next = removeNode.next;
+      removeNode.next.prev = removeNode.prev;
+      removeNode.next=null;
+      removeNode.prev=null;
+      this.length -=1;
+    }
+    return removeNode;
+  }
 }
 
 const DList = new DoubleLinkedList();
@@ -1196,5 +1216,6 @@ console.log(DList.push("5th value"))
 // console.log(DList.unshift("Here is unshift!"));
 // console.log(DList.get(4));
 // console.log(DList.set(2, "setting 3 to third"));
-console.log(DList.insert(1, "inserted val"));
+// console.log(DList.insert(1, "inserted val"));
+// console.log(DList.remove(5));
 
