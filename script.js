@@ -1110,11 +1110,25 @@ class DoubleLinkedList {
       this.head = remove.next;
       this.head.prev = null;
       // remove.next.prev = this.head;
+      remove.next = null;
     }
-    remove.prev = null;
-    remove.next = null;
+    // remove.prev = null;
     this.length -= 1;
     return remove
+  }
+
+  unshift(val){
+    let newNode = new Node(val);
+    if(!this.head){
+      this.head = newNode;
+      this.tail = newNode;
+    }else{
+      this.head.prev = newNode;
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+    this.length +=1;
+    return this;
   }
 }
 
@@ -1122,9 +1136,10 @@ const DList = new DoubleLinkedList();
 
 console.log(DList.push("1st value"))
 console.log(DList.push("2nd value"))
-console.log(DList.push("3rd value"))
+console.log(DList.push("3rd value")) 
 console.log(DList.push("4th value"))
 console.log(DList.push("5th value"))
 console.log(DList.pop())
 console.log(DList.shift());
+console.log(DList.unshift("Here is unshift!"));
 
