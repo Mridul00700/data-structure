@@ -1130,6 +1130,32 @@ class DoubleLinkedList {
     this.length +=1;
     return this;
   }
+
+  get(index){
+     if(index <0 || index >=this.length){
+      return undefined;
+     }
+     let res;
+     let counter;
+     if(index < (this.length - index -1)){
+      counter =0;
+      res=this.head;
+      while(counter !== index){
+        res = res.next;
+        counter +=1;
+        console.log("iteration start")
+      }
+     }else {
+      counter = this.length-1;
+      res = this.tail;
+      while(counter !== index){
+        res = res.prev;
+        counter -=1;
+        console.log("iteration end")
+      }
+     }
+     return res;
+  }
 }
 
 const DList = new DoubleLinkedList();
@@ -1139,7 +1165,8 @@ console.log(DList.push("2nd value"))
 console.log(DList.push("3rd value")) 
 console.log(DList.push("4th value"))
 console.log(DList.push("5th value"))
-console.log(DList.pop())
-console.log(DList.shift());
+// console.log(DList.pop())
+// console.log(DList.shift());
 console.log(DList.unshift("Here is unshift!"));
+console.log(DList.get(-1));
 
