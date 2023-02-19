@@ -1143,7 +1143,6 @@ class DoubleLinkedList {
       while(counter !== index){
         res = res.next;
         counter +=1;
-        console.log("iteration start")
       }
      }else {
       counter = this.length-1;
@@ -1151,7 +1150,6 @@ class DoubleLinkedList {
       while(counter !== index){
         res = res.prev;
         counter -=1;
-        console.log("iteration end")
       }
      }
      return res;
@@ -1164,6 +1162,26 @@ class DoubleLinkedList {
     else return false;
     return true;
   }
+
+  insert(index, val) {
+    if(index <0 || index > this.length){
+      return false;
+    }
+    if(index ===0){
+      this.unshift(val);
+    }else if(index === this.length){
+      this.push(val)
+    }else {
+    let newNode = new Node(val);
+    let shiftNode = this.get(index);
+    newNode.next=shiftNode;
+    newNode.prev=shiftNode.prev;
+    shiftNode.prev.next= newNode;
+    shiftNode.prev = newNode;
+    this.length +=1;
+    }
+       return true;
+  }
 }
 
 const DList = new DoubleLinkedList();
@@ -1175,7 +1193,8 @@ console.log(DList.push("4th value"))
 console.log(DList.push("5th value"))
 // console.log(DList.pop())
 // console.log(DList.shift());
-console.log(DList.unshift("Here is unshift!"));
-console.log(DList.get(4));
-console.log(DList.set(2, "setting 3 to third"));
+// console.log(DList.unshift("Here is unshift!"));
+// console.log(DList.get(4));
+// console.log(DList.set(2, "setting 3 to third"));
+console.log(DList.insert(1, "inserted val"));
 
