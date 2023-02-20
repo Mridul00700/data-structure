@@ -1219,3 +1219,6 @@ console.log(radixSort(checkArray));
 // console.log(DList.insert(1, "inserted val"));
 // console.log(DList.remove(5));
 
+//Stack
+
+
