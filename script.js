@@ -1219,6 +1219,68 @@ console.log(radixSort(checkArray));
 // console.log(DList.insert(1, "inserted val"));
 // console.log(DList.remove(5));
 
-//Stack
 
+
+//Stack Implementation using singly linked list
+
+class Node {
+  constructor(val){
+    this.val = val;
+    this.next = null;
+  }
+}
+
+class Stack {
+  constructor(){
+    this.size = 0;
+    this.first = null;
+    this.last = null;
+  }
+
+  push(val){
+
+    const newNode = new Node(val);
+
+    if(!this.first){
+      this.first = newNode;
+      this.last = newNode;
+    }else {
+      this.last.next = newNode;
+      this.last = newNode;
+    }
+    this.size +=1;
+    return this;
+  }
+
+  pop(){
+    if(!this.first){
+      return undefined;
+    }
+    let remove = this.first;
+    if(this.size ===1){ 
+      this.first = null;
+      this.last = null;
+    }else{
+      let prev = this.first
+      while(remove.next){
+        prev=remove;
+        remove = remove.next;
+      }
+      prev.next = null;
+      this.last = prev;
+    }
+    this.size -=1;
+    return remove;
+  }
+
+}
+
+
+const Stack1 = new Stack();
+Stack1.push("1st")
+Stack1.push("2st")
+Stack1.push("3st")
+Stack1.push("4st")
+
+console.log(Stack1.pop());
 
