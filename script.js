@@ -1278,7 +1278,7 @@ class Stack {
   //To implement constant time we can do the push and pop from front insted from back.
 
   push(val){
-    
+
     //Constant time
     const newNode = new Node(val);
     if(!this.first){
@@ -1297,7 +1297,7 @@ class Stack {
 
     //Constant time
     if(!this.first){
-      return undefined
+      return null
     }
     let removedNode = this.first;
     if(this.size ===1){
@@ -1308,7 +1308,7 @@ class Stack {
     }
     removedNode.next=null;
     this.size -=1;
-    return removedNode;
+    return removedNode.val;
   }
 
 
@@ -1316,10 +1316,10 @@ class Stack {
 
 
 const Stack1 = new Stack();
-Stack1.push("1st")
-Stack1.push("2st")
-Stack1.push("3st")
-Stack1.push("4st")
+console.log(Stack1.push("1st"))
+console.log(Stack1.push("2st"))
+console.log(Stack1.push("3st"))
+console.log(Stack1.push("4st"))
 
 console.log(Stack1.pop());
 
