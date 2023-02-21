@@ -1237,41 +1237,80 @@ class Stack {
     this.last = null;
   }
 
+  ////We can't do this for stack as this is not constant time 
+
+  // push(val){
+
+  //   const newNode = new Node(val);
+
+  //   if(!this.first){
+  //     this.first = newNode;
+  //     this.last = newNode;
+  //   }else {
+  //     this.last.next = newNode;
+  //     this.last = newNode;
+  //   }
+  //   this.size +=1;
+  //   return this;
+  // }
+
+  // pop(){
+  //   if(!this.first){
+  //     return undefined;
+  //   }
+  //   let remove = this.first;
+  //   if(this.size ===1){ 
+  //     this.first = null;
+  //     this.last = null;
+  //   }else{
+  //     let prev = this.first
+  //     while(remove.next){
+  //       prev=remove;
+  //       remove = remove.next;
+  //     }
+  //     prev.next = null;
+  //     this.last = prev;
+  //   }
+  //   this.size -=1;
+  //   return remove;
+  // }
+
+  //To implement constant time we can do the push and pop from front insted from back.
+
   push(val){
-
+    
+    //Constant time
     const newNode = new Node(val);
-
     if(!this.first){
       this.first = newNode;
       this.last = newNode;
     }else {
-      this.last.next = newNode;
-      this.last = newNode;
+      let prevFirst = this.first;
+      this.first = newNode;
+      this.first.next=prevFirst;
     }
     this.size +=1;
-    return this;
+    return this.size;
   }
 
   pop(){
+
+    //Constant time
     if(!this.first){
-      return undefined;
+      return undefined
     }
-    let remove = this.first;
-    if(this.size ===1){ 
+    let removedNode = this.first;
+    if(this.size ===1){
       this.first = null;
       this.last = null;
-    }else{
-      let prev = this.first
-      while(remove.next){
-        prev=remove;
-        remove = remove.next;
-      }
-      prev.next = null;
-      this.last = prev;
+    }else {
+      this.first = removedNode.next;
     }
+    removedNode.next=null;
     this.size -=1;
-    return remove;
+    return removedNode;
   }
+
 
 }
 
