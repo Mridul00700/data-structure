@@ -1223,19 +1223,19 @@ console.log(radixSort(checkArray));
 
 //Stack Implementation using singly linked list
 
-class Node {
-  constructor(val){
-    this.val = val;
-    this.next = null;
-  }
-}
+// class Node {
+//   constructor(val){
+//     this.val = val;
+//     this.next = null;
+//   }
+// }
 
-class Stack {
-  constructor(){
-    this.size = 0;
-    this.first = null;
-    this.last = null;
-  }
+// class Stack {
+//   constructor(){
+//     this.size = 0;
+//     this.first = null;
+//     this.last = null;
+//   }
 
   ////We can't do this for stack as this is not constant time 
 
@@ -1275,51 +1275,118 @@ class Stack {
   //   return remove;
   // }
 
-  //To implement constant time we can do the push and pop from front insted from back.
+  //To implement constant time we can do the push and pop from front instead from back.
+
+//   push(val){
+
+//     //Constant time
+//     const newNode = new Node(val);
+//     if(!this.first){
+//       this.first = newNode;
+//       this.last = newNode;
+//     }else {
+//       let prevFirst = this.first;
+//       this.first = newNode;
+//       this.first.next=prevFirst;
+//     }
+//     this.size +=1;
+//     return this.size;
+//   }
+
+//   pop(){
+
+//     //Constant time
+//     if(!this.first){
+//       return null
+//     }
+//     let removedNode = this.first;
+//     if(this.size ===1){
+//       this.first = null;
+//       this.last = null;
+//     }else {
+//       this.first = removedNode.next;
+//     }
+//     removedNode.next=null;
+//     this.size -=1;
+//     return removedNode.val;
+//   }
+
+
+// }
+
+
+// const Stack1 = new Stack();
+// console.log(Stack1.push("1st"))
+// console.log(Stack1.push("2st"))
+// console.log(Stack1.push("3st"))
+// console.log(Stack1.push("4st"))
+
+// console.log(Stack1.pop());
+
+
+
+//Start of Queue
+
+// FIFO 
+
+// Array -> push + shift   || unshift + pop   its takes O(n) time
+
+
+//Hence using linked list for O(C) constant time
+
+//We will use push and shift to get this done!
+
+class Node {
+  constructor(val){
+    this.val = val;
+    this.next= null;
+  }
+}
+
+class Queue {
+  constructor(){
+    this.first=null;
+    this.last=null;
+    this.size = 0;
+  }
 
   push(val){
-
-    //Constant time
     const newNode = new Node(val);
     if(!this.first){
       this.first = newNode;
       this.last = newNode;
     }else {
-      let prevFirst = this.first;
-      this.first = newNode;
-      this.first.next=prevFirst;
+      this.last.next = newNode;
+      this.last = newNode;
     }
+
     this.size +=1;
     return this.size;
   }
 
   pop(){
-
-    //Constant time
+    let removedNode;
     if(!this.first){
-      return null
+      return null;
     }
-    let removedNode = this.first;
+    removedNode = this.first;
     if(this.size ===1){
       this.first = null;
-      this.last = null;
-    }else {
+      this.last =null;
+    } else {
       this.first = removedNode.next;
+      removedNode.next=null;
     }
-    removedNode.next=null;
     this.size -=1;
-    return removedNode.val;
+    return removedNode;
   }
-
-
 }
 
+const queue = new Queue();
 
-const Stack1 = new Stack();
-console.log(Stack1.push("1st"))
-console.log(Stack1.push("2st"))
-console.log(Stack1.push("3st"))
-console.log(Stack1.push("4st"))
-
-console.log(Stack1.pop());
-
+console.log(queue.push("1"))
+console.log(queue.push("2"))
+console.log(queue.push("3"))
+console.log(queue.push("4"))
+console.log(queue.push("5"))
+console.log(queue.pop())
