@@ -1378,7 +1378,7 @@ class Queue {
       removedNode.next=null;
     }
     this.size -=1;
-    return removedNode;
+    return removedNode.val;
   }
 }
 
