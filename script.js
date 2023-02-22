@@ -1350,7 +1350,7 @@ class Queue {
     this.size = 0;
   }
 
-  push(val){
+  enqueue(val){
     const newNode = new Node(val);
     if(!this.first){
       this.first = newNode;
@@ -1364,7 +1364,7 @@ class Queue {
     return this.size;
   }
 
-  pop(){
+  dequeue(){
     let removedNode;
     if(!this.first){
       return null;
