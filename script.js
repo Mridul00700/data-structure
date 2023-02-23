@@ -1451,6 +1451,29 @@ class BST {
       }
     }
   }
+
+  find(val){
+    if(!this.root){
+      return false
+    }
+    let curr = this.root;
+    while(true){
+      if(curr.val === val){
+        return true
+      }
+      if(val < curr.val){
+        if(!curr.left){
+          return false;
+        }
+        curr = curr.left;
+      }else{
+      if(!curr.right){
+        return false;
+      }
+      curr = curr.right
+    }
+    }
+  }
 }
 
 
@@ -1463,3 +1486,4 @@ tree.insert(7)
 tree.insert(2)
 tree.insert(16)
 tree.insert(11)
+console.log(tree.find(5));
