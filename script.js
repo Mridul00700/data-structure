@@ -1453,6 +1453,7 @@ class BST {
   }
 }
 
+
 let tree = new BST();
 
 tree.insert(10)
