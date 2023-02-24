@@ -1336,57 +1336,173 @@ console.log(radixSort(checkArray));
 
 //We will use push and shift to get this done!
 
+// class Node {
+//   constructor(val){
+//     this.val = val;
+//     this.next= null;
+//   }
+// }
+
+// class Queue {
+//   constructor(){
+//     this.first=null;
+//     this.last=null;
+//     this.size = 0;
+//   }
+
+//   enqueue(val){
+//     const newNode = new Node(val);
+//     if(!this.first){
+//       this.first = newNode;
+//       this.last = newNode;
+//     }else {
+//       this.last.next = newNode;
+//       this.last = newNode;
+//     }
+
+//     this.size +=1;
+//     return this.size;
+//   }
+
+//   dequeue(){
+//     let removedNode;
+//     if(!this.first){
+//       return null;
+//     }
+//     removedNode = this.first;
+//     if(this.size ===1){
+//       this.first = null;
+//       this.last =null;
+//     } else {
+//       this.first = removedNode.next;
+//       removedNode.next=null;
+//     }
+//     this.size -=1;
+//     return removedNode.val;
+//   }
+// }
+
+// const queue = new Queue();
+
+// console.log(queue.push("1"))
+// console.log(queue.push("2"))
+// console.log(queue.push("3"))
+// console.log(queue.push("4"))
+// console.log(queue.push("5"))
+// console.log(queue.pop())
+
+
+
+
+//Tree
+
+
+//HTML DOM
+//N/W Routing
+//Abstract Syntax tree
+//Artificial Intelligence
+//Folders in OS
+//Computer in file system
+
+//Binary Tree
+//Can have max 2 nodes 
+
+//Binary search tree
+//Sorted in a particular way
+//Every node on the left is smaller than the parent and on right node is greater than the parent.
+
+
 class Node {
   constructor(val){
     this.val = val;
-    this.next= null;
+    this.left = null;
+    this.right = null;
   }
 }
 
-class Queue {
+class BST {
   constructor(){
-    this.first=null;
-    this.last=null;
-    this.size = 0;
+    this.root = null;
   }
 
-  enqueue(val){
-    const newNode = new Node(val);
-    if(!this.first){
-      this.first = newNode;
-      this.last = newNode;
-    }else {
-      this.last.next = newNode;
-      this.last = newNode;
+  insert(val){
+    let newNode = new Node(val);
+    if(!this.root){
+      this.root = newNode; 
+      return this;
+    } 
+    let curr = this.root;
+    while(true){
+      if(newNode.val === curr.val){
+        return undefined;
+      }
+      if(newNode.val < curr.val){
+        if(!curr.left){
+          curr.left = newNode;
+          return this
+        }
+        curr = curr.left;
+      }else {
+        if(!curr.right){
+          curr.right = newNode;
+          return this;
+        }
+        curr = curr.right;
+      }
     }
-
-    this.size +=1;
-    return this.size;
   }
 
-  dequeue(){
-    let removedNode;
-    if(!this.first){
-      return null;
+  find(val){
+    if(!this.root){
+      return false
     }
-    removedNode = this.first;
-    if(this.size ===1){
-      this.first = null;
-      this.last =null;
-    } else {
-      this.first = removedNode.next;
-      removedNode.next=null;
+    let curr = this.root;
+    while(true){
+      if(curr.val === val){
+        return true
+      }
+      if(val < curr.val){
+        if(!curr.left){
+          return false;
+        }
+        curr = curr.left;
+      }else{
+      if(!curr.right){
+        return false;
+      }
+      curr = curr.right
     }
-    this.size -=1;
-    return removedNode.val;
+    }
+  }
+
+  find2(val){
+    if(this.root === null) return false;
+    let curr = this.root;
+    let found = false;
+    while(curr && !found){
+      if(val < curr.val){
+        curr = curr.left;
+      }else if(val > curr.val){
+        curr = curr.right;
+      }else {
+        found = true;
+      }
+    }
+    if(!curr){
+      return false
+    }
+    return curr;
   }
 }
 
-const queue = new Queue();
 
-console.log(queue.push("1"))
-console.log(queue.push("2"))
-console.log(queue.push("3"))
-console.log(queue.push("4"))
-console.log(queue.push("5"))
-console.log(queue.pop())
+let tree = new BST();
+
+tree.insert(10)
+tree.insert(13)
+tree.insert(5)
+tree.insert(7)
+tree.insert(2)
+tree.insert(16)
+tree.insert(11)
+console.log(tree.find(5));
