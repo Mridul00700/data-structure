@@ -1412,97 +1412,107 @@ console.log(radixSort(checkArray));
 //Every node on the left is smaller than the parent and on right node is greater than the parent.
 
 
-class Node {
-  constructor(val){
-    this.val = val;
-    this.left = null;
-    this.right = null;
-  }
-}
+// class Node {
+//   constructor(val){
+//     this.val = val;
+//     this.left = null;
+//     this.right = null;
+//   }
+// }
 
-class BST {
-  constructor(){
-    this.root = null;
-  }
+// class BST {
+//   constructor(){
+//     this.root = null;
+//   }
 
-  insert(val){
-    let newNode = new Node(val);
-    if(!this.root){
-      this.root = newNode; 
-      return this;
-    } 
-    let curr = this.root;
-    while(true){
-      if(newNode.val === curr.val){
-        return undefined;
-      }
-      if(newNode.val < curr.val){
-        if(!curr.left){
-          curr.left = newNode;
-          return this
-        }
-        curr = curr.left;
-      }else {
-        if(!curr.right){
-          curr.right = newNode;
-          return this;
-        }
-        curr = curr.right;
-      }
-    }
-  }
+//   insert(val){
+//     let newNode = new Node(val);
+//     if(!this.root){
+//       this.root = newNode; 
+//       return this;
+//     } 
+//     let curr = this.root;
+//     while(true){
+//       if(newNode.val === curr.val){
+//         return undefined;
+//       }
+//       if(newNode.val < curr.val){
+//         if(!curr.left){
+//           curr.left = newNode;
+//           return this
+//         }
+//         curr = curr.left;
+//       }else {
+//         if(!curr.right){
+//           curr.right = newNode;
+//           return this;
+//         }
+//         curr = curr.right;
+//       }
+//     }
+//   }
 
-  find(val){
-    if(!this.root){
-      return false
-    }
-    let curr = this.root;
-    while(true){
-      if(curr.val === val){
-        return true
-      }
-      if(val < curr.val){
-        if(!curr.left){
-          return false;
-        }
-        curr = curr.left;
-      }else{
-      if(!curr.right){
-        return false;
-      }
-      curr = curr.right
-    }
-    }
-  }
+//   find(val){
+//     if(!this.root){
+//       return false
+//     }
+//     let curr = this.root;
+//     while(true){
+//       if(curr.val === val){
+//         return true
+//       }
+//       if(val < curr.val){
+//         if(!curr.left){
+//           return false;
+//         }
+//         curr = curr.left;
+//       }else{
+//       if(!curr.right){
+//         return false;
+//       }
+//       curr = curr.right
+//     }
+//     }
+//   }
 
-  find2(val){
-    if(this.root === null) return false;
-    let curr = this.root;
-    let found = false;
-    while(curr && !found){
-      if(val < curr.val){
-        curr = curr.left;
-      }else if(val > curr.val){
-        curr = curr.right;
-      }else {
-        found = true;
-      }
-    }
-    if(!curr){
-      return false
-    }
-    return curr;
-  }
-}
+//   find2(val){
+//     if(this.root === null) return false;
+//     let curr = this.root;
+//     let found = false;
+//     while(curr && !found){
+//       if(val < curr.val){
+//         curr = curr.left;
+//       }else if(val > curr.val){
+//         curr = curr.right;
+//       }else {
+//         found = true;
+//       }
+//     }
+//     if(!curr){
+//       return false
+//     }
+//     return curr;
+//   }
+// }
 
 
-let tree = new BST();
+// let tree = new BST();
 
-tree.insert(10)
-tree.insert(13)
-tree.insert(5)
-tree.insert(7)
-tree.insert(2)
-tree.insert(16)
-tree.insert(11)
-console.log(tree.find(5));
+// tree.insert(10)
+// tree.insert(13)
+// tree.insert(5)
+// tree.insert(7)
+// tree.insert(2)
+// tree.insert(16)
+// tree.insert(11)
+// console.log(tree.find(5));
+
+
+
+
+//Tree traversal
+
+//Depth First (down) and Breadth First Search (lvl search, across)
+
+
+//Depth First - in-order, pre-order and post-order
