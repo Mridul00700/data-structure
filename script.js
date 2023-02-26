@@ -1516,3 +1516,99 @@ console.log(radixSort(checkArray));
 
 
 //Depth First - in-order, pre-order and post-order
+
+
+// Breadth First Search
+
+class Node {
+  constructor(val){
+    this.val = val;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+class BST {
+  constructor(){
+    this.root = null;
+  }
+
+  insert(val){
+    let newNode = new Node(val);
+    if(!this.root){
+      this.root = newNode; 
+      return this;
+    } 
+    let curr = this.root;
+    while(true){
+      if(newNode.val === curr.val){
+        return undefined;
+      }
+      if(newNode.val < curr.val){
+        if(!curr.left){
+          curr.left = newNode;
+          return this
+        }
+        curr = curr.left;
+      }else {
+        if(!curr.right){
+          curr.right = newNode;
+          return this;
+        }
+        curr = curr.right;
+      }
+    }
+  }
+
+  find(val){
+    if(!this.root){
+      return false
+    }
+    let curr = this.root;
+    while(true){
+      if(curr.val === val){
+        return true
+      }
+      if(val < curr.val){
+        if(!curr.left){
+          return false;
+        }
+        curr = curr.left;
+      }else{
+      if(!curr.right){
+        return false;
+      }
+      curr = curr.right
+    }
+    }
+  }
+
+  BFS(){
+    let data = [];
+    let queue = [];   // Queue FIFO so use push and shift 
+    let node = this.root;
+    queue.push(this.root);
+    while(queue.length!==0){
+      node = queue.shift();
+      if(node.left){
+        queue.push(node.left);
+      }
+      if(node.right){
+        queue.push(node.right);
+      }
+      data.push(node.val);
+    }
+    return data;
+  }
+}
+
+let tree = new BST();
+tree.insert(10)
+tree.insert(13)
+tree.insert(5)
+tree.insert(7)
+tree.insert(2)
+tree.insert(16)
+tree.insert(11)
+
+console.log(tree.BFS());
