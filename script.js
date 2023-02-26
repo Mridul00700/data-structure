@@ -1617,6 +1617,7 @@ class BST {
     helper(current);
     return result;
   }
+
   DFSPostOrder() {
     let result = [];
     let current = this.root;
@@ -1630,6 +1631,24 @@ class BST {
         helper(node.right)
       }
       result.push(node.val);
+    }
+    helper(current);
+    return result;
+  }
+
+  DFSInOrder() {
+    let result = [];
+    let current = this.root;
+
+    function helper(node){
+      
+      if(node.left){
+        helper(node.left)
+      }
+      result.push(node.val);
+      if(node.right){
+        helper(node.right)
+      }
     }
     helper(current);
     return result;
@@ -1649,6 +1668,7 @@ tree.insert(11)
 console.log(tree.BFS());
 console.log(tree.DFSPreOrder());
 console.log(tree.DFSPostOrder());
+console.log(tree.DFSInOrder());
 
 //Depth First 
 
