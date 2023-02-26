@@ -1672,3 +1672,8 @@ console.log(tree.DFSInOrder());
 
 //Depth First 
 
+
+// Binary Heap 
+
+//Max Binary heap - parent is always greater than children
+//Min Binary heap - Parent is always smaller than children
