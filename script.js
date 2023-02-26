@@ -1708,6 +1708,92 @@ class BinaryHeap {
     this.bubleUp(this.values.length-1)
     return this.values;
   }
+
+  sinkDown(index) {
+    if(index>= this.values.length-1){
+      return
+    }
+    let leftChild = this.values[((2 * index) +1)]
+    let rightChild = this.values[((2 * index) +2)]
+    console.log(this.values[index], index)
+    if(this.values[index] > leftChild && this.values[index] > rightChild){
+      return
+    }
+    console.log("left",leftChild,"right",rightChild)
+    if(leftChild > rightChild || rightChild === undefined){  
+      console.log("left",leftChild, index)
+      if(!leftChild || leftChild < this.values[index]){
+        return
+      }
+      // [leftChild, this.values[index]] = [this.values[index], leftChild];
+      this.values[((2 * index) +1)] = this.values[index];
+      this.values[index] = leftChild;
+      index = ((2 * index) +1);
+    }else {
+      console.log("right",rightChild);
+      if(!rightChild || rightChild < this.values[index]){
+        return
+      }
+      // [rightChild, this.values[index]] = [this.values[index], rightChild];
+      this.values[((2 * index) +2)] = this.values[index]
+      this.values[index] = rightChild;
+      index = ((2 * index) +2);
+    }
+    this.sinkDown(index)
+  }
+
+  sinkDown2() {
+    let index = 0;
+    const length = this.values.length;
+    const element = this.values[0];
+    while(true){
+      let leftChildIndex = 2 * idx + 1;
+      let rightChildIndex = 2 * idx + 2;
+      let leftChild;
+      let rightChild;
+      let swap = null;
+
+      if(leftChild < length){
+        leftChild = this.values[leftChildIndex]
+        if(leftChild> element){
+          swap = leftChildIndex;
+        }
+      }
+      if(rightChild < length){
+        rightChild = this.values[rightChildIndex]
+        if((swap === null && rightChild > element) || (swap !== null && rightChild > leftChild)){
+          swap = rightChildIndex;
+        }
+      }
+      if(swap === null) break;
+      this.values[index] = this.values[swap];
+      this.values[swap] = element;
+      index = swap;
+      element = this.values[swap];
+    }
+  }
+
+
+  extractMax(){
+    let last = this.values.pop();
+    if(this.values.length > 0){
+      this.values[0] =last
+    }
+    this.sinkDown2();
+    return this;
+  }
+
+
+
+  remove(){
+    let last = this.values.pop();
+    if(this.values.length > 0){
+      this.values[0] =last
+    }
+    this.sinkDown(0);
+    return this;
+  }
+
 }
 
 const BH = new BinaryHeap();
@@ -1721,5 +1807,8 @@ const BH = new BinaryHeap();
 // console.log(BH.insert(2223));
 // console.log(BH.insert(123));
 console.log(BH.insert(55)); 
-console.log(BH.insert(1)); 
-console.log(BH.insert(45)); 
+// console.log(BH.insert(1)); 
+// console.log(BH.insert(1)); 
+// console.log(BH.insert(45)); 
+console.log(BH.remove());
+console.log(BH.remove());
