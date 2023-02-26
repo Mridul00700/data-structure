@@ -1600,6 +1600,24 @@ class BST {
     }
     return data;
   }
+
+  BST() {
+    let result = [];
+    let current = this.root;
+
+    function helper(node){
+      result.push(node.val);
+      if(node.left){
+        helper(node.left)
+      }
+      if(node.right){
+        helper(node.right)
+      }
+    }
+    helper(current);
+    return result;
+  }
+
 }
 
 let tree = new BST();
@@ -1612,3 +1630,7 @@ tree.insert(16)
 tree.insert(11)
 
 console.log(tree.BFS());
+console.log(tree.BST());
+
+//Depth First 
+
