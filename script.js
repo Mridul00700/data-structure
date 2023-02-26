@@ -1677,3 +1677,6 @@ console.log(tree.DFSInOrder());
 
 //Max Binary heap - parent is always greater than children
 //Min Binary heap - Parent is always smaller than children
+
+//Used as a priority queue // Also graph traversal
+
