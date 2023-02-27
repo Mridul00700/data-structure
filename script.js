@@ -1520,155 +1520,426 @@ console.log(radixSort(checkArray));
 
 // Breadth First Search
 
-class Node {
-  constructor(val){
-    this.val = val;
-    this.left = null;
-    this.right = null;
-  }
-}
+// class Node {
+//   constructor(val){
+//     this.val = val;
+//     this.left = null;
+//     this.right = null;
+//   }
+// }
 
-class BST {
-  constructor(){
-    this.root = null;
-  }
+// class BST {
+//   constructor(){
+//     this.root = null;
+//   }
 
-  insert(val){
-    let newNode = new Node(val);
-    if(!this.root){
-      this.root = newNode; 
-      return this;
-    } 
-    let curr = this.root;
-    while(true){
-      if(newNode.val === curr.val){
-        return undefined;
-      }
-      if(newNode.val < curr.val){
-        if(!curr.left){
-          curr.left = newNode;
-          return this
-        }
-        curr = curr.left;
-      }else {
-        if(!curr.right){
-          curr.right = newNode;
-          return this;
-        }
-        curr = curr.right;
-      }
-    }
-  }
+//   insert(val){
+//     let newNode = new Node(val);
+//     if(!this.root){
+//       this.root = newNode; 
+//       return this;
+//     } 
+//     let curr = this.root;
+//     while(true){
+//       if(newNode.val === curr.val){
+//         return undefined;
+//       }
+//       if(newNode.val < curr.val){
+//         if(!curr.left){
+//           curr.left = newNode;
+//           return this
+//         }
+//         curr = curr.left;
+//       }else {
+//         if(!curr.right){
+//           curr.right = newNode;
+//           return this;
+//         }
+//         curr = curr.right;
+//       }
+//     }
+//   }
 
-  find(val){
-    if(!this.root){
-      return false
-    }
-    let curr = this.root;
-    while(true){
-      if(curr.val === val){
-        return true
-      }
-      if(val < curr.val){
-        if(!curr.left){
-          return false;
-        }
-        curr = curr.left;
-      }else{
-      if(!curr.right){
-        return false;
-      }
-      curr = curr.right
-    }
-    }
-  }
+//   find(val){
+//     if(!this.root){
+//       return false
+//     }
+//     let curr = this.root;
+//     while(true){
+//       if(curr.val === val){
+//         return true
+//       }
+//       if(val < curr.val){
+//         if(!curr.left){
+//           return false;
+//         }
+//         curr = curr.left;
+//       }else{
+//       if(!curr.right){
+//         return false;
+//       }
+//       curr = curr.right
+//     }
+//     }
+//   }
 
-  BFS(){
-    let data = [];
-    let queue = [];   // Queue FIFO so use push and shift 
-    let node = this.root;
-    queue.push(this.root);
-    while(queue.length!==0){
-      node = queue.shift();
-      if(node.left){
-        queue.push(node.left);
-      }
-      if(node.right){
-        queue.push(node.right);
-      }
-      data.push(node.val);
-    }
-    return data;
-  }
+//   BFS(){
+//     let data = [];
+//     let queue = [];   // Queue FIFO so use push and shift 
+//     let node = this.root;
+//     queue.push(this.root);
+//     while(queue.length!==0){
+//       node = queue.shift();
+//       if(node.left){
+//         queue.push(node.left);
+//       }
+//       if(node.right){
+//         queue.push(node.right);
+//       }
+//       data.push(node.val);
+//     }
+//     return data;
+//   }
 
-  DFSPreOrder() {
-    let result = [];
-    let current = this.root;
+//   DFSPreOrder() {
+//     let result = [];
+//     let current = this.root;
 
-    function helper(node){
-      result.push(node.val);
-      if(node.left){
-        helper(node.left)
-      }
-      if(node.right){
-        helper(node.right)
-      }
-    }
-    helper(current);
-    return result;
-  }
+//     function helper(node){
+//       result.push(node.val);
+//       if(node.left){
+//         helper(node.left)
+//       }
+//       if(node.right){
+//         helper(node.right)
+//       }
+//     }
+//     helper(current);
+//     return result;
+//   }
 
-  DFSPostOrder() {
-    let result = [];
-    let current = this.root;
+//   DFSPostOrder() {
+//     let result = [];
+//     let current = this.root;
 
-    function helper(node){
+//     function helper(node){
       
-      if(node.left){
-        helper(node.left)
-      }
-      if(node.right){
-        helper(node.right)
-      }
-      result.push(node.val);
-    }
-    helper(current);
-    return result;
-  }
+//       if(node.left){
+//         helper(node.left)
+//       }
+//       if(node.right){
+//         helper(node.right)
+//       }
+//       result.push(node.val);
+//     }
+//     helper(current);
+//     return result;
+//   }
 
-  DFSInOrder() {
-    let result = [];
-    let current = this.root;
+//   DFSInOrder() {
+//     let result = [];
+//     let current = this.root;
 
-    function helper(node){
+//     function helper(node){
       
-      if(node.left){
-        helper(node.left)
-      }
-      result.push(node.val);
-      if(node.right){
-        helper(node.right)
-      }
-    }
-    helper(current);
-    return result;
-  }
+//       if(node.left){
+//         helper(node.left)
+//       }
+//       result.push(node.val);
+//       if(node.right){
+//         helper(node.right)
+//       }
+//     }
+//     helper(current);
+//     return result;
+//   }
 
-}
+// }
 
-let tree = new BST();
-tree.insert(10)
-tree.insert(13)
-tree.insert(5)
-tree.insert(7)
-tree.insert(2)
-tree.insert(16)
-tree.insert(11)
+// let tree = new BST();
+// tree.insert(10)
+// tree.insert(13)
+// tree.insert(5)
+// tree.insert(7)
+// tree.insert(2)
+// tree.insert(16)
+// tree.insert(11)
 
-console.log(tree.BFS());
-console.log(tree.DFSPreOrder());
-console.log(tree.DFSPostOrder());
-console.log(tree.DFSInOrder());
+// console.log(tree.BFS());
+// console.log(tree.DFSPreOrder());
+// console.log(tree.DFSPostOrder());
+// console.log(tree.DFSInOrder());
 
 //Depth First 
 
+
+
+// Binary Heap 
+
+//Max Binary heap - parent is always greater than children
+//Min Binary heap - Parent is always smaller than children
+
+//Used as a priority queue // Also graph traversal
+
+//Children for storing is i+1 away from the parent = 2n+1 left and 2n+2 right
+
+// Max binary heap
+// class BinaryHeap {
+//   constructor(){
+//     this.values = [41,39,33,18,27,12]
+//   }
+
+//   bubleUp(index){
+//     console.log("index", index);
+//     if(index===0)
+//     return
+//     let parentIndex = Math.floor((index - 1) / 2); 
+//     if(this.values[parentIndex] < this.values[index]){
+//       [this.values[parentIndex], this.values[index]] = [this.values[index], this.values[parentIndex]]
+//     }
+//     else {
+//       return
+//     }
+//     this.bubleUp(parentIndex);
+//   }
+
+//   insert(val){
+//     this.values.push(val);
+//     this.bubleUp(this.values.length-1)
+//     return this.values;
+//   }
+
+//   sinkDown(index) {
+//     if(index>= this.values.length-1){
+//       return
+//     }
+//     let leftChild = this.values[((2 * index) +1)]
+//     let rightChild = this.values[((2 * index) +2)]
+//     console.log(this.values[index], index)
+//     if(this.values[index] > leftChild && this.values[index] > rightChild){
+//       return
+//     }
+//     console.log("left",leftChild,"right",rightChild)
+//     if(leftChild > rightChild || rightChild === undefined){  
+//       console.log("left",leftChild, index)
+//       if(!leftChild || leftChild < this.values[index]){
+//         return
+//       }
+//       // [leftChild, this.values[index]] = [this.values[index], leftChild];
+//       this.values[((2 * index) +1)] = this.values[index];
+//       this.values[index] = leftChild;
+//       index = ((2 * index) +1);
+//     }else {
+//       console.log("right",rightChild);
+//       if(!rightChild || rightChild < this.values[index]){
+//         return
+//       }
+//       // [rightChild, this.values[index]] = [this.values[index], rightChild];
+//       this.values[((2 * index) +2)] = this.values[index]
+//       this.values[index] = rightChild;
+//       index = ((2 * index) +2);
+//     }
+//     this.sinkDown(index)
+//   }
+
+//   sinkDown2() {
+//     let index = 0;
+//     const length = this.values.length;
+//     const element = this.values[0];
+//     while(true){
+//       let leftChildIndex = 2 * idx + 1;
+//       let rightChildIndex = 2 * idx + 2;
+//       let leftChild;
+//       let rightChild;
+//       let swap = null;
+
+//       if(leftChildIndex < length){
+//         leftChild = this.values[leftChildIndex]
+//         if(leftChild> element){
+//           swap = leftChildIndex;
+//         }
+//       }
+//       if(rightChildIndex < length){
+//         rightChild = this.values[rightChildIndex]
+//         if((swap === null && rightChild > element) || (swap !== null && rightChild > leftChild)){
+//           swap = rightChildIndex;
+//         }
+//       }
+//       if(swap === null) break;
+//       this.values[index] = this.values[swap];
+//       this.values[swap] = element;
+//       index = swap;
+//       element = this.values[swap];
+//     }
+//   }
+
+
+//   extractMax(){
+//     let last = this.values.pop();
+//     if(this.values.length > 0){
+//       this.values[0] =last
+//     }
+//     this.sinkDown2();
+//     return this;
+//   }
+
+
+
+//   remove(){
+//     let last = this.values.pop();
+//     if(this.values.length > 0){
+//       this.values[0] =last
+//     }
+//     this.sinkDown(0);
+//     return this;
+//   }
+
+// }
+
+// const BH = new BinaryHeap();
+// // console.log(BH.insert(23));
+// // console.log(BH.insert(5));
+// // console.log(BH.insert(8));
+// // console.log(BH.insert(444));
+// // console.log(BH.insert(2333));
+// // console.log(BH.insert(22));
+// // console.log(BH.insert(23663));
+// // console.log(BH.insert(2223));
+// // console.log(BH.insert(123));
+// console.log(BH.insert(55)); 
+// // console.log(BH.insert(1)); 
+// // console.log(BH.insert(1)); 
+// // console.log(BH.insert(45)); 
+// console.log(BH.remove());
+// console.log(BH.remove());
+
+// Priority Queue
+
+class MinPriorityQueue {
+  constructor(){
+    this.values = []
+  }
+
+  bubleUp(index){
+    // console.log("index", index);
+    if(index===0)
+    return
+    let parentIndex = Math.floor((index - 1) / 2); 
+    if(this.values[parentIndex].priority > this.values[index].priority){
+      // [this.values[parentIndex], this.values[index]] = [this.values[index], this.values[parentIndex]]
+      let temp = this.values[parentIndex];
+      this.values[parentIndex] = this.values[index];
+      this.values[index] = temp;
+    }
+    else {
+      return
+    }
+    this.bubleUp(parentIndex);
+  }
+
+  enqueue(val, priority){
+    const newNode = new Node(val, priority);
+    this.values.push(newNode);
+    this.bubleUp(this.values.length-1)
+    return this.values;
+  }
+
+  sinkDown(index) {
+    if(index>= this.values.length-1){
+      return
+    }
+    let leftChild = this.values[((2 * index) +1)]
+    let rightChild = this.values[((2 * index) +2)]
+    // console.log(this.values[index], index)
+    if(this.values[index].priority < leftChild?.priority && this.values[index].priority < rightChild?.priority){
+      return
+    }
+    // console.log("left",leftChild,"right",rightChild)
+    if(leftChild?.priority < rightChild?.priority || rightChild === undefined){  
+      // console.log("left",leftChild, index)
+      if(!leftChild || leftChild?.priority > this.values[index].priority){
+        return
+      }
+      // [leftChild, this.values[index]] = [this.values[index], leftChild];
+      this.values[((2 * index) +1)] = this.values[index];
+      this.values[index] = leftChild;
+      index = ((2 * index) +1);
+    }else {
+      // console.log("right",rightChild);
+      if(!rightChild || rightChild?.priority > this.values[index]){
+        return
+      }
+      // [rightChild, this.values[index]] = [this.values[index], rightChild];
+      this.values[((2 * index) +2)] = this.values[index]
+      this.values[index] = rightChild;
+      index = ((2 * index) +2);
+    }
+    this.sinkDown(index)
+  }
+
+  sinkDown2() {
+    let index = 0;
+    const length = this.values.length;
+    const element = this.values[0];
+    while(true){
+      let leftChildIndex = 2 * index + 1;
+      let rightChildIndex = 2 * index + 2;
+      let leftChild;
+      let rightChild;
+      let swap = null;
+
+      if(leftChildIndex < length){
+        leftChild = this.values[leftChildIndex]
+        if(leftChild.priority < element.priority){
+          swap = leftChildIndex;
+        }
+      }
+      if(rightChildIndex < length){
+        rightChild = this.values[rightChildIndex]
+        if((swap === null && rightChild.priority < element) || (swap !== null && rightChild.priority < leftChild.priority)){
+          swap = rightChildIndex;
+        }
+      }
+      if(swap === null) break;
+      this.values[index] = this.values[swap];
+      this.values[swap] = element;
+      index = swap;
+      element = this.values[swap];
+    }
+  }
+
+
+  dequeue2(){
+    let first = this.values[0]
+    let last = this.values.pop();
+    if(this.values.length > 0){
+      this.values[0] =last
+    }
+    this.sinkDown2();
+    return first;
+  }
+  dequeue(){
+    let first = this.values[0]
+    let last = this.values.pop();
+    if(this.values.length > 0){
+      this.values[0] =last
+    }
+    this.sinkDown(0);
+    return first;
+  }
+}
+
+class Node {
+  constructor(val, priority){
+    this.val = val;
+    this.priority = priority;
+  }
+}
+
+const ER = new MinPriorityQueue();
+
+ER.enqueue("common cold", 5);
+ER.enqueue("gunshot", 1);
+ER.enqueue("fever", 4);
+ER.enqueue("broken arm", 2);
+ER.enqueue("foot issue", 3);
