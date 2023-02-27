@@ -1683,6 +1683,8 @@ console.log(radixSort(checkArray));
 
 //Children for storing is i+1 away from the parent = 2n+1 left and 2n+2 right
 
+//Insertion and deletion
+
 // Max binary heap
 // class BinaryHeap {
 //   constructor(){
