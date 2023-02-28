@@ -1965,3 +1965,16 @@ function hash(key, length){
   }
   return total;
 }
+
+// For more uniformity and to avoid collisions use prime numbers
+
+function hashImproved(key, length = 13){
+  let total =0;
+  let prime = 31;
+  for(let i=0; i< Math.min(key.length, 100); i++){
+    let char = key[i];
+    let code = char.charCodeAt(0) -96;
+    total = (total * prime + code) % length;
+  }    
+  return total;
+}
