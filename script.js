@@ -1950,3 +1950,18 @@ console.log(radixSort(checkArray));
 
 
 //Hash Table
+
+//Key value pair
+
+//Array for storing data but instead of number as indecies we have keys that will be converted to number index by hash functions
+//Hash functions takes input and return value fixed
+//fast constant time  
+
+function hash(key, length){
+  let total =0;
+  for(let char of key){
+    let code = char.charCodeAt(0) -96;
+    total = (total + code) % length;
+  }
+  return total;
+}
