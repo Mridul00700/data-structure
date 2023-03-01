@@ -1817,131 +1817,254 @@ console.log(radixSort(checkArray));
 
 // Priority Queue
 
-class MinPriorityQueue {
-  constructor(){
-    this.values = []
-  }
+// class MinPriorityQueue {
+//   constructor(){
+//     this.values = []
+//   }
 
-  bubleUp(index){
-    // console.log("index", index);
-    if(index===0)
-    return
-    let parentIndex = Math.floor((index - 1) / 2); 
-    if(this.values[parentIndex].priority > this.values[index].priority){
-      // [this.values[parentIndex], this.values[index]] = [this.values[index], this.values[parentIndex]]
-      let temp = this.values[parentIndex];
-      this.values[parentIndex] = this.values[index];
-      this.values[index] = temp;
-    }
-    else {
-      return
-    }
-    this.bubleUp(parentIndex);
-  }
+//   bubleUp(index){
+//     // console.log("index", index);
+//     if(index===0)
+//     return
+//     let parentIndex = Math.floor((index - 1) / 2); 
+//     if(this.values[parentIndex].priority > this.values[index].priority){
+//       // [this.values[parentIndex], this.values[index]] = [this.values[index], this.values[parentIndex]]
+//       let temp = this.values[parentIndex];
+//       this.values[parentIndex] = this.values[index];
+//       this.values[index] = temp;
+//     }
+//     else {
+//       return
+//     }
+//     this.bubleUp(parentIndex);
+//   }
 
-  enqueue(val, priority){
-    const newNode = new Node(val, priority);
-    this.values.push(newNode);
-    this.bubleUp(this.values.length-1)
-    return this.values;
-  }
+//   enqueue(val, priority){
+//     const newNode = new Node(val, priority);
+//     this.values.push(newNode);
+//     this.bubleUp(this.values.length-1)
+//     return this.values;
+//   }
 
-  sinkDown(index) {
-    if(index>= this.values.length-1){
-      return
-    }
-    let leftChild = this.values[((2 * index) +1)]
-    let rightChild = this.values[((2 * index) +2)]
-    // console.log(this.values[index], index)
-    if(this.values[index].priority < leftChild?.priority && this.values[index].priority < rightChild?.priority){
-      return
-    }
-    // console.log("left",leftChild,"right",rightChild)
-    if(leftChild?.priority < rightChild?.priority || rightChild === undefined){  
-      // console.log("left",leftChild, index)
-      if(!leftChild || leftChild?.priority > this.values[index].priority){
-        return
-      }
-      // [leftChild, this.values[index]] = [this.values[index], leftChild];
-      this.values[((2 * index) +1)] = this.values[index];
-      this.values[index] = leftChild;
-      index = ((2 * index) +1);
-    }else {
-      // console.log("right",rightChild);
-      if(!rightChild || rightChild?.priority > this.values[index]){
-        return
-      }
-      // [rightChild, this.values[index]] = [this.values[index], rightChild];
-      this.values[((2 * index) +2)] = this.values[index]
-      this.values[index] = rightChild;
-      index = ((2 * index) +2);
-    }
-    this.sinkDown(index)
-  }
+//   sinkDown(index) {
+//     if(index>= this.values.length-1){
+//       return
+//     }
+//     let leftChild = this.values[((2 * index) +1)]
+//     let rightChild = this.values[((2 * index) +2)]
+//     // console.log(this.values[index], index)
+//     if(this.values[index].priority < leftChild?.priority && this.values[index].priority < rightChild?.priority){
+//       return
+//     }
+//     // console.log("left",leftChild,"right",rightChild)
+//     if(leftChild?.priority < rightChild?.priority || rightChild === undefined){  
+//       // console.log("left",leftChild, index)
+//       if(!leftChild || leftChild?.priority > this.values[index].priority){
+//         return
+//       }
+//       // [leftChild, this.values[index]] = [this.values[index], leftChild];
+//       this.values[((2 * index) +1)] = this.values[index];
+//       this.values[index] = leftChild;
+//       index = ((2 * index) +1);
+//     }else {
+//       // console.log("right",rightChild);
+//       if(!rightChild || rightChild?.priority > this.values[index]){
+//         return
+//       }
+//       // [rightChild, this.values[index]] = [this.values[index], rightChild];
+//       this.values[((2 * index) +2)] = this.values[index]
+//       this.values[index] = rightChild;
+//       index = ((2 * index) +2);
+//     }
+//     this.sinkDown(index)
+//   }
 
-  sinkDown2() {
-    let index = 0;
-    const length = this.values.length;
-    const element = this.values[0];
-    while(true){
-      let leftChildIndex = 2 * index + 1;
-      let rightChildIndex = 2 * index + 2;
-      let leftChild;
-      let rightChild;
-      let swap = null;
+//   sinkDown2() {
+//     let index = 0;
+//     const length = this.values.length;
+//     const element = this.values[0];
+//     while(true){
+//       let leftChildIndex = 2 * index + 1;
+//       let rightChildIndex = 2 * index + 2;
+//       let leftChild;
+//       let rightChild;
+//       let swap = null;
 
-      if(leftChildIndex < length){
-        leftChild = this.values[leftChildIndex]
-        if(leftChild.priority < element.priority){
-          swap = leftChildIndex;
-        }
-      }
-      if(rightChildIndex < length){
-        rightChild = this.values[rightChildIndex]
-        if((swap === null && rightChild.priority < element) || (swap !== null && rightChild.priority < leftChild.priority)){
-          swap = rightChildIndex;
-        }
-      }
-      if(swap === null) break;
-      this.values[index] = this.values[swap];
-      this.values[swap] = element;
-      index = swap;
-      element = this.values[swap];
-    }
-  }
+//       if(leftChildIndex < length){
+//         leftChild = this.values[leftChildIndex]
+//         if(leftChild.priority < element.priority){
+//           swap = leftChildIndex;
+//         }
+//       }
+//       if(rightChildIndex < length){
+//         rightChild = this.values[rightChildIndex]
+//         if((swap === null && rightChild.priority < element) || (swap !== null && rightChild.priority < leftChild.priority)){
+//           swap = rightChildIndex;
+//         }
+//       }
+//       if(swap === null) break;
+//       this.values[index] = this.values[swap];
+//       this.values[swap] = element;
+//       index = swap;
+//       element = this.values[swap];
+//     }
+//   }
 
 
-  dequeue2(){
-    let first = this.values[0]
-    let last = this.values.pop();
-    if(this.values.length > 0){
-      this.values[0] =last
-    }
-    this.sinkDown2();
-    return first;
+//   dequeue2(){
+//     let first = this.values[0]
+//     let last = this.values.pop();
+//     if(this.values.length > 0){
+//       this.values[0] =last
+//     }
+//     this.sinkDown2();
+//     return first;
+//   }
+//   dequeue(){
+//     let first = this.values[0]
+//     let last = this.values.pop();
+//     if(this.values.length > 0){
+//       this.values[0] =last
+//     }
+//     this.sinkDown(0);
+//     return first;
+//   }
+// }
+
+// class Node {
+//   constructor(val, priority){
+//     this.val = val;
+//     this.priority = priority;
+//   }
+// }
+
+// const ER = new MinPriorityQueue();
+
+// ER.enqueue("common cold", 5);
+// ER.enqueue("gunshot", 1);
+// ER.enqueue("fever", 4);
+// ER.enqueue("broken arm", 2);
+// ER.enqueue("foot issue", 3);
+
+
+
+
+//Hash Table
+
+//Key value pair
+
+//Array for storing data but instead of number as indecies we have keys that will be converted to number index by hash functions
+//Hash functions takes input and return value fixed
+//fast constant time  
+
+function hash(key, length){
+  let total =0;
+  for(let char of key){
+    let code = char.charCodeAt(0) -96;
+    total = (total + code) % length;
   }
-  dequeue(){
-    let first = this.values[0]
-    let last = this.values.pop();
-    if(this.values.length > 0){
-      this.values[0] =last
-    }
-    this.sinkDown(0);
-    return first;
-  }
+  return total;
 }
 
-class Node {
-  constructor(val, priority){
-    this.val = val;
-    this.priority = priority;
-  }
+// For more uniformity and to avoid collisions use prime numbers
+
+function hashImproved(key, length = 13){
+  let total =0;
+  let prime = 31;
+  for(let i=0; i< Math.min(key.length, 100); i++){
+    let char = key[i];
+    let code = char.charCodeAt(0) -96;
+    total = (total * prime + code) % length;
+  }    
+  return total;
 }
 
-const ER = new MinPriorityQueue();
 
-ER.enqueue("common cold", 5);
-ER.enqueue("gunshot", 1);
-ER.enqueue("fever", 4);
-ER.enqueue("broken arm", 2);
-ER.enqueue("foot issue", 3);
+// Collision 
+//seperate chaining and probing 
+
+// Hash Table
+
+class HashTable {
+  constructor(size = 13){
+    this.keyMap = new Array(size);
+  }
+
+  _hash(key) {
+    let total = 0;
+    let prime = 31;
+    for(let i =0; i < Math.min(key.length, 100); i++){
+      let char = key[i];
+      total = ((total * prime + char.charCodeAt(0)) - 96) % this.keyMap.length;
+    }
+    return total;
+  }
+
+  set(key, value) {
+    let pos = this._hash(key);
+    // if(this.keyMap[pos] == undefined){
+    //   this.keyMap[pos].push([key, value]);
+    // }else {
+    //   this.keyMap[pos] = [[key, value]];
+    // }
+    if(!this.keyMap[pos]){
+      this.keyMap[pos] = [];
+    }
+    this.keyMap[pos].push([key, value])
+  }
+
+  get(key){
+    let pos = this._hash(key);
+
+    if(this.keyMap[pos]){
+
+      for(let i=0; i< this.keyMap[pos].length; i++){
+        if(key === this.keyMap[pos][i][0]){
+          return this.keyMap[pos][i][1]
+        }
+      }
+    }
+    return undefined;
+  }
+
+  values() {
+    let val = [];
+    for (let i =0; i< this.keyMap.length; i++){
+      if(this.keyMap[i]){
+        for(let j=0; j< this.keyMap[i].length; j++){
+          if(!val.includes(this.keyMap[i][j][1]))
+          val.push(this.keyMap[i][j][1]);
+        }
+      }
+    }
+    return val;
+  }
+
+  keys() {
+      let key = [];
+      for (let i =0; i< this.keyMap.length; i++){
+        if(this.keyMap[i]){
+          for(let j=0; j< this.keyMap[i].length; j++){
+            if(!key.includes(this.keyMap[i][j][0]))
+            key.push(this.keyMap[i][j][0]);
+          }
+        }
+      }
+      return key;
+  }
+
+}
+
+const HT = new HashTable();
+
+HT.set("green", "#gggg")
+HT.set("red", "#rrrr")
+HT.set("orange", "#ooo")
+HT.set("yellow", "#yyyy")
+HT.set("blue", "#bbbb")
+HT.set("purple", "#pppp")
+HT.set("dark", "#dddd")
+HT.set("black", "#dddd")
+HT.set("black", "#dddd")
+console.log(HT.values());
+console.log(HT.keys());
