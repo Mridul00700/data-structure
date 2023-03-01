@@ -2032,6 +2032,7 @@ class HashTable {
     for (let i =0; i< this.keyMap.length; i++){
       if(this.keyMap[i]){
         for(let j=0; j< this.keyMap[i].length; j++){
+          if(!val.includes(this.keyMap[i][j][1]))
           val.push(this.keyMap[i][j][1]);
         }
       }
@@ -2050,3 +2051,5 @@ HT.set("yellow", "#yyyy")
 HT.set("blue", "#bbbb")
 HT.set("purple", "#pppp")
 HT.set("dark", "#dddd")
+HT.set("black", "#dddd")
+console.log(HT.values());
