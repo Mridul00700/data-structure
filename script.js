@@ -1957,114 +1957,120 @@ console.log(radixSort(checkArray));
 //Hash functions takes input and return value fixed
 //fast constant time  
 
-function hash(key, length){
-  let total =0;
-  for(let char of key){
-    let code = char.charCodeAt(0) -96;
-    total = (total + code) % length;
-  }
-  return total;
-}
+// function hash(key, length){
+//   let total =0;
+//   for(let char of key){
+//     let code = char.charCodeAt(0) -96;
+//     total = (total + code) % length;
+//   }
+//   return total;
+// }
 
-// For more uniformity and to avoid collisions use prime numbers
+// // For more uniformity and to avoid collisions use prime numbers
 
-function hashImproved(key, length = 13){
-  let total =0;
-  let prime = 31;
-  for(let i=0; i< Math.min(key.length, 100); i++){
-    let char = key[i];
-    let code = char.charCodeAt(0) -96;
-    total = (total * prime + code) % length;
-  }    
-  return total;
-}
+// function hashImproved(key, length = 13){
+//   let total =0;
+//   let prime = 31;
+//   for(let i=0; i< Math.min(key.length, 100); i++){
+//     let char = key[i];
+//     let code = char.charCodeAt(0) -96;
+//     total = (total * prime + code) % length;
+//   }    
+//   return total;
+// }
 
 
-// Collision 
-//seperate chaining and probing 
+// // Collision 
+// //seperate chaining and probing 
 
-// Hash Table
+// // Hash Table
 
-class HashTable {
-  constructor(size = 13){
-    this.keyMap = new Array(size);
-  }
+// class HashTable {
+//   constructor(size = 13){
+//     this.keyMap = new Array(size);
+//   }
 
-  _hash(key) {
-    let total = 0;
-    let prime = 31;
-    for(let i =0; i < Math.min(key.length, 100); i++){
-      let char = key[i];
-      total = ((total * prime + char.charCodeAt(0)) - 96) % this.keyMap.length;
-    }
-    return total;
-  }
+//   _hash(key) {
+//     let total = 0;
+//     let prime = 31;
+//     for(let i =0; i < Math.min(key.length, 100); i++){
+//       let char = key[i];
+//       total = ((total * prime + char.charCodeAt(0)) - 96) % this.keyMap.length;
+//     }
+//     return total;
+//   }
 
-  set(key, value) {
-    let pos = this._hash(key);
-    // if(this.keyMap[pos] == undefined){
-    //   this.keyMap[pos].push([key, value]);
-    // }else {
-    //   this.keyMap[pos] = [[key, value]];
-    // }
-    if(!this.keyMap[pos]){
-      this.keyMap[pos] = [];
-    }
-    this.keyMap[pos].push([key, value])
-  }
+//   set(key, value) {
+//     let pos = this._hash(key);
+//     // if(this.keyMap[pos] == undefined){
+//     //   this.keyMap[pos].push([key, value]);
+//     // }else {
+//     //   this.keyMap[pos] = [[key, value]];
+//     // }
+//     if(!this.keyMap[pos]){
+//       this.keyMap[pos] = [];
+//     }
+//     this.keyMap[pos].push([key, value])
+//   }
 
-  get(key){
-    let pos = this._hash(key);
+//   get(key){
+//     let pos = this._hash(key);
 
-    if(this.keyMap[pos]){
+//     if(this.keyMap[pos]){
 
-      for(let i=0; i< this.keyMap[pos].length; i++){
-        if(key === this.keyMap[pos][i][0]){
-          return this.keyMap[pos][i][1]
-        }
-      }
-    }
-    return undefined;
-  }
+//       for(let i=0; i< this.keyMap[pos].length; i++){
+//         if(key === this.keyMap[pos][i][0]){
+//           return this.keyMap[pos][i][1]
+//         }
+//       }
+//     }
+//     return undefined;
+//   }
 
-  values() {
-    let val = [];
-    for (let i =0; i< this.keyMap.length; i++){
-      if(this.keyMap[i]){
-        for(let j=0; j< this.keyMap[i].length; j++){
-          if(!val.includes(this.keyMap[i][j][1]))
-          val.push(this.keyMap[i][j][1]);
-        }
-      }
-    }
-    return val;
-  }
+//   values() {
+//     let val = [];
+//     for (let i =0; i< this.keyMap.length; i++){
+//       if(this.keyMap[i]){
+//         for(let j=0; j< this.keyMap[i].length; j++){
+//           if(!val.includes(this.keyMap[i][j][1]))
+//           val.push(this.keyMap[i][j][1]);
+//         }
+//       }
+//     }
+//     return val;
+//   }
 
-  keys() {
-      let key = [];
-      for (let i =0; i< this.keyMap.length; i++){
-        if(this.keyMap[i]){
-          for(let j=0; j< this.keyMap[i].length; j++){
-            if(!key.includes(this.keyMap[i][j][0]))
-            key.push(this.keyMap[i][j][0]);
-          }
-        }
-      }
-      return key;
-  }
+//   keys() {
+//       let key = [];
+//       for (let i =0; i< this.keyMap.length; i++){
+//         if(this.keyMap[i]){
+//           for(let j=0; j< this.keyMap[i].length; j++){
+//             if(!key.includes(this.keyMap[i][j][0]))
+//             key.push(this.keyMap[i][j][0]);
+//           }
+//         }
+//       }
+//       return key;
+//   }
 
-}
+// }
 
-const HT = new HashTable();
+// const HT = new HashTable();
 
-HT.set("green", "#gggg")
-HT.set("red", "#rrrr")
-HT.set("orange", "#ooo")
-HT.set("yellow", "#yyyy")
-HT.set("blue", "#bbbb")
-HT.set("purple", "#pppp")
-HT.set("dark", "#dddd")
-HT.set("black", "#dddd")
-HT.set("black", "#dddd")
-console.log(HT.values());
-console.log(HT.keys());
+// HT.set("green", "#gggg")
+// HT.set("red", "#rrrr")
+// HT.set("orange", "#ooo")
+// HT.set("yellow", "#yyyy")
+// HT.set("blue", "#bbbb")
+// HT.set("purple", "#pppp")
+// HT.set("dark", "#dddd")
+// HT.set("black", "#dddd")
+// HT.set("black", "#dddd")
+// console.log(HT.values());
+// console.log(HT.keys());
+
+
+
+
+// Graphs
+
