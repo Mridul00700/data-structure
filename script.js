@@ -2002,13 +2002,16 @@ class HashTable {
 
   set(key, value) {
     let pos = this._hash(key);
-    if(this.keyMap[pos] !== undefined){
-      this.keyMap[pos].push([key, value]);
-    }else {
-      this.keyMap[pos] = [[key, value]];
+    // if(this.keyMap[pos] == undefined){
+    //   this.keyMap[pos].push([key, value]);
+    // }else {
+    //   this.keyMap[pos] = [[key, value]];
+    // }
+    if(!this.keyMap[pos]){
+      this.keyMap[pos] = [];
     }
+    this.keyMap[pos].push([key, value])
   }
-
 }
 
 const HT = new HashTable();
