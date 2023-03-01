@@ -2040,6 +2040,19 @@ class HashTable {
     return val;
   }
 
+  keys() {
+      let key = [];
+      for (let i =0; i< this.keyMap.length; i++){
+        if(this.keyMap[i]){
+          for(let j=0; j< this.keyMap[i].length; j++){
+            if(!key.includes(this.keyMap[i][j][0]))
+            key.push(this.keyMap[i][j][0]);
+          }
+        }
+      }
+      return key;
+  }
+
 }
 
 const HT = new HashTable();
@@ -2052,4 +2065,6 @@ HT.set("blue", "#bbbb")
 HT.set("purple", "#pppp")
 HT.set("dark", "#dddd")
 HT.set("black", "#dddd")
+HT.set("black", "#dddd")
 console.log(HT.values());
+console.log(HT.keys());
