@@ -2012,6 +2012,21 @@ class HashTable {
     }
     this.keyMap[pos].push([key, value])
   }
+
+  get(key){
+    let pos = this._hash(key);
+
+    if(this.keyMap[pos]){
+
+      for(let i=0; i< this.keyMap[pos].length; i++){
+        if(key === this.keyMap[pos][i][0]){
+          return this.keyMap[pos][i][1]
+        }
+      }
+    }
+    return undefined;
+  }
+
 }
 
 const HT = new HashTable();
