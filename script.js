@@ -1978,3 +1978,45 @@ function hashImproved(key, length = 13){
   }    
   return total;
 }
+
+
+// Collision 
+//seperate chaining and probing 
+
+// Hash Table
+
+class HashTable {
+  constructor(size = 13){
+    this.keyMap = new Array(size);
+  }
+
+  _hash(key) {
+    let total = 0;
+    let prime = 31;
+    for(let i =0; i < Math.min(key.length, 100); i++){
+      let char = key[i];
+      total = ((total * prime + char.charCodeAt(0)) - 96) % this.keyMap.length;
+    }
+    return total;
+  }
+
+  set(key, value) {
+    let pos = this._hash(key);
+    if(this.keyMap[pos] !== undefined){
+      this.keyMap[pos].push([key, value]);
+    }else {
+      this.keyMap[pos] = [[key, value]];
+    }
+  }
+
+}
+
+const HT = new HashTable();
+
+HT.set("green", "#gggg")
+HT.set("red", "#rrrr")
+HT.set("orange", "#ooo")
+HT.set("yellow", "#yyyy")
+HT.set("blue", "#bbbb")
+HT.set("purple", "#pppp")
+HT.set("dark", "#dddd")
