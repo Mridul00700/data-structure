@@ -2081,3 +2081,20 @@ console.log(radixSort(checkArray));
 
 
 // Tree has only one path from one node to another while graphs may have several
+//Directed and Undirected graph
+//Weighted and Unweighted graph
+
+//Adjacency matrix 
+//Adjacency list 
+
+
+class Graph {
+  constructor(){
+    this.adjacencyList = {}
+  }
+
+  addVertex(vertex) {
+    if(!this.adjacencyList[vertex])
+    this.adjacencyList[vertex] = [];
+  } 
+}
