@@ -2097,6 +2097,21 @@ class Graph {
     if(!this.adjacencyList[vertex])
     this.adjacencyList[vertex] = [];
   } 
+
+  addEdge(vertex1, vertex2) {
+    this.adjacencyList[vertex1].push(vertex2);
+    this.adjacencyList[vertex2].push(vertex1);
+
+  }
+
 }
 
+
+let g = new Graph();
+
+g.addVertex("lko")
+g.addVertex("del")
+g.addVertex("mum")
+g.addVertex("hyd")
+g.addEdge("lko", "del");
 // add edge
