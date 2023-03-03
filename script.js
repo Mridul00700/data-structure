@@ -2109,6 +2109,15 @@ class Graph {
     this.adjacencyList[v2] = this.adjacencyList[v2].filter(val => val !== v1)
   }
 
+  removeVertex(v) {
+    let len = this.adjacencyList[v].length
+    for(;this.adjacencyList[v].length >0;){
+      // console.log(v, this.adjacencyList[v][i],this.adjacencyList[v].length)
+      this.removeEdge(v, this.adjacencyList[v][0]);
+    }
+    delete this.adjacencyList[v]
+  } 
+
 }
 
 
@@ -2122,7 +2131,8 @@ g.addEdge("lko", "del");
 g.addEdge("mum", "hyd");
 g.addEdge("mum", "lko");
 g.addEdge("hyd", "del");
-g.removeEdge("mum", "hyd");
+// g.removeEdge("mum", "hyd");
+g.removeVertex("hyd");
 // del
 // : 
 // (2) ['lko', 'hyd']
