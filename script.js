@@ -2104,6 +2104,11 @@ class Graph {
 
   }
 
+  removeEdge(v1, v2){
+    this.adjacencyList[v1] = this.adjacencyList[v1].filter(val => val !== v2)
+    this.adjacencyList[v2] = this.adjacencyList[v2].filter(val => val !== v1)
+  }
+
 }
 
 
@@ -2114,4 +2119,23 @@ g.addVertex("del")
 g.addVertex("mum")
 g.addVertex("hyd")
 g.addEdge("lko", "del");
+g.addEdge("mum", "hyd");
+g.addEdge("mum", "lko");
+g.addEdge("hyd", "del");
+g.removeEdge("mum", "hyd");
+// del
+// : 
+// (2) ['lko', 'hyd']
+// hyd
+// : 
+// (2) ['mum', 'del']
+// lko
+// : 
+// (2) ['del', 'mum']
+// mum
+// : 
+// (2) ['hyd', 'lko']
+
+
+
 // add edge
