@@ -1672,7 +1672,7 @@ console.log(radixSort(checkArray));
 
 //Depth First 
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Binary Heap 
 
@@ -1947,7 +1947,7 @@ console.log(radixSort(checkArray));
 // ER.enqueue("foot issue", 3);
 
 
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //Hash Table
 
@@ -1957,114 +1957,226 @@ console.log(radixSort(checkArray));
 //Hash functions takes input and return value fixed
 //fast constant time  
 
-function hash(key, length){
-  let total =0;
-  for(let char of key){
-    let code = char.charCodeAt(0) -96;
-    total = (total + code) % length;
+// function hash(key, length){
+//   let total =0;
+//   for(let char of key){
+//     let code = char.charCodeAt(0) -96;
+//     total = (total + code) % length;
+//   }
+//   return total;
+// }
+
+// // For more uniformity and to avoid collisions use prime numbers
+
+// function hashImproved(key, length = 13){
+//   let total =0;
+//   let prime = 31;
+//   for(let i=0; i< Math.min(key.length, 100); i++){
+//     let char = key[i];
+//     let code = char.charCodeAt(0) -96;
+//     total = (total * prime + code) % length;
+//   }    
+//   return total;
+// }
+
+
+// // Collision 
+// //seperate chaining and probing 
+
+// // Hash Table
+
+// class HashTable {
+//   constructor(size = 13){
+//     this.keyMap = new Array(size);
+//   }
+
+//   _hash(key) {
+//     let total = 0;
+//     let prime = 31;
+//     for(let i =0; i < Math.min(key.length, 100); i++){
+//       let char = key[i];
+//       total = ((total * prime + char.charCodeAt(0)) - 96) % this.keyMap.length;
+//     }
+//     return total;
+//   }
+
+//   set(key, value) {
+//     let pos = this._hash(key);
+//     // if(this.keyMap[pos] == undefined){
+//     //   this.keyMap[pos].push([key, value]);
+//     // }else {
+//     //   this.keyMap[pos] = [[key, value]];
+//     // }
+//     if(!this.keyMap[pos]){
+//       this.keyMap[pos] = [];
+//     }
+//     this.keyMap[pos].push([key, value])
+//   }
+
+//   get(key){
+//     let pos = this._hash(key);
+
+//     if(this.keyMap[pos]){
+
+//       for(let i=0; i< this.keyMap[pos].length; i++){
+//         if(key === this.keyMap[pos][i][0]){
+//           return this.keyMap[pos][i][1]
+//         }
+//       }
+//     }
+//     return undefined;
+//   }
+
+//   values() {
+//     let val = [];
+//     for (let i =0; i< this.keyMap.length; i++){
+//       if(this.keyMap[i]){
+//         for(let j=0; j< this.keyMap[i].length; j++){
+//           if(!val.includes(this.keyMap[i][j][1]))
+//           val.push(this.keyMap[i][j][1]);
+//         }
+//       }
+//     }
+//     return val;
+//   }
+
+//   keys() {
+//       let key = [];
+//       for (let i =0; i< this.keyMap.length; i++){
+//         if(this.keyMap[i]){
+//           for(let j=0; j< this.keyMap[i].length; j++){
+//             if(!key.includes(this.keyMap[i][j][0]))
+//             key.push(this.keyMap[i][j][0]);
+//           }
+//         }
+//       }
+//       return key;
+//   }
+
+// }
+
+// const HT = new HashTable();
+
+// HT.set("green", "#gggg")
+// HT.set("red", "#rrrr")
+// HT.set("orange", "#ooo")
+// HT.set("yellow", "#yyyy")
+// HT.set("blue", "#bbbb")
+// HT.set("purple", "#pppp")
+// HT.set("dark", "#dddd")
+// HT.set("black", "#dddd")
+// HT.set("black", "#dddd")
+// console.log(HT.values());
+// console.log(HT.keys());
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Graphs
+
+//Google Map... 
+//represent social media.. 
+//maybe social profile of anyone ... 
+//Recomendation engine
+
+
+// Tree has only one path from one node to another while graphs may have several
+//Directed and Undirected graph
+//Weighted and Unweighted graph
+
+//Adjacency matrix 
+//Adjacency list 
+
+
+class Graph {
+  constructor(){
+    this.adjacencyList = {}
   }
-  return total;
-}
 
-// For more uniformity and to avoid collisions use prime numbers
+  addVertex(vertex) {
+    if(!this.adjacencyList[vertex])
+    this.adjacencyList[vertex] =  [];
+  } 
 
-function hashImproved(key, length = 13){
-  let total =0;
-  let prime = 31;
-  for(let i=0; i< Math.min(key.length, 100); i++){
-    let char = key[i];
-    let code = char.charCodeAt(0) -96;
-    total = (total * prime + code) % length;
-  }    
-  return total;
-}
+  addEdge(vertex1, vertex2) {
+    this.adjacencyList[vertex1].push(vertex2);
+    this.adjacencyList[vertex2].push(vertex1);
 
-
-// Collision 
-//seperate chaining and probing 
-
-// Hash Table
-
-class HashTable {
-  constructor(size = 13){
-    this.keyMap = new Array(size);
   }
 
-  _hash(key) {
-    let total = 0;
-    let prime = 31;
-    for(let i =0; i < Math.min(key.length, 100); i++){
-      let char = key[i];
-      total = ((total * prime + char.charCodeAt(0)) - 96) % this.keyMap.length;
+  removeEdge(v1, v2){
+    this.adjacencyList[v1] = this.adjacencyList[v1].filter(val => val !== v2)
+    this.adjacencyList[v2] = this.adjacencyList[v2].filter(val => val !== v1)
+  }
+
+  removeVertex(v) {
+    let len = this.adjacencyList[v].length
+    for(;this.adjacencyList[v].length >0;){
+      // console.log(v, this.adjacencyList[v][i],this.adjacencyList[v].length)
+      this.removeEdge(v, this.adjacencyList[v][0]);
     }
-    return total;
-  }
+    delete this.adjacencyList[v]
+  } 
 
-  set(key, value) {
-    let pos = this._hash(key);
-    // if(this.keyMap[pos] == undefined){
-    //   this.keyMap[pos].push([key, value]);
-    // }else {
-    //   this.keyMap[pos] = [[key, value]];
-    // }
-    if(!this.keyMap[pos]){
-      this.keyMap[pos] = [];
-    }
-    this.keyMap[pos].push([key, value])
-  }
+  DFSRecursive(vertex){
 
-  get(key){
-    let pos = this._hash(key);
+    let result = [];
+    let visited = {}
 
-    if(this.keyMap[pos]){
-
-      for(let i=0; i< this.keyMap[pos].length; i++){
-        if(key === this.keyMap[pos][i][0]){
-          return this.keyMap[pos][i][1]
+    const DFS = (vertex) =>{
+      console.log(this)
+      if(this.adjacencyList[vertex].length ===0){
+        return
+      }
+      result.push(vertex);  
+      visited[vertex] = true
+      console.log(visited, result);
+      for(let i=0 ; i<this.adjacencyList[vertex].length; i++){
+        if(!visited[this.adjacencyList[vertex][i]]){
+          DFS(this.adjacencyList[vertex][i]);
         }
       }
     }
-    return undefined;
-  }
 
-  values() {
-    let val = [];
-    for (let i =0; i< this.keyMap.length; i++){
-      if(this.keyMap[i]){
-        for(let j=0; j< this.keyMap[i].length; j++){
-          if(!val.includes(this.keyMap[i][j][1]))
-          val.push(this.keyMap[i][j][1]);
-        }
-      }
-    }
-    return val;
+    DFS(vertex);
+    return result;
   }
-
-  keys() {
-      let key = [];
-      for (let i =0; i< this.keyMap.length; i++){
-        if(this.keyMap[i]){
-          for(let j=0; j< this.keyMap[i].length; j++){
-            if(!key.includes(this.keyMap[i][j][0]))
-            key.push(this.keyMap[i][j][0]);
-          }
-        }
-      }
-      return key;
-  }
-
 }
 
-const HT = new HashTable();
 
-HT.set("green", "#gggg")
-HT.set("red", "#rrrr")
-HT.set("orange", "#ooo")
-HT.set("yellow", "#yyyy")
-HT.set("blue", "#bbbb")
-HT.set("purple", "#pppp")
-HT.set("dark", "#dddd")
-HT.set("black", "#dddd")
-HT.set("black", "#dddd")
-console.log(HT.values());
-console.log(HT.keys());
+let g = new Graph();
+
+g.addVertex("A")
+g.addVertex("B")
+g.addVertex("C")
+g.addVertex("D")
+g.addVertex("E")
+g.addVertex("F")
+g.addEdge("A", "B");
+g.addEdge("A", "C");
+g.addEdge("B", "D");
+g.addEdge("C", "E");
+g.addEdge("D", "E");
+g.addEdge("D", "F");
+g.addEdge("E", "F");
+// g.removeEdge("mum", "hyd");
+// g.removeVertex("hyd");
+// del
+// : 
+// (2) ['lko', 'hyd']
+// hyd
+// : 
+// (2) ['mum', 'del']
+// lko
+// : 
+// (2) ['del', 'mum']
+// mum
+// : 
+// (2) ['hyd', 'lko']
+console.log(g.DFSRecursive("A"))
+
+
+// add edge
+
+//Depth first Graph
+// do one branch first
