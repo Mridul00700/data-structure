@@ -2095,7 +2095,7 @@ class Graph {
 
   addVertex(vertex) {
     if(!this.adjacencyList[vertex])
-    this.adjacencyList[vertex] =  ;
+    this.adjacencyList[vertex] =  [];
   } 
 
   addEdge(vertex1, vertex2) {
@@ -2118,6 +2118,29 @@ class Graph {
     delete this.adjacencyList[v]
   } 
 
+  DFSRecursive(vertex){
+
+    let result = [];
+    let visited = {}
+
+    const DFS = (vertex) =>{
+      console.log(this)
+      if(this.adjacencyList[vertex].length ===0){
+        return
+      }
+      result.push(vertex);  
+      visited[vertex] = true
+      console.log(visited, result);
+      for(let i=0 ; i<this.adjacencyList[vertex].length; i++){
+        if(!visited[this.adjacencyList[vertex][i]]){
+          DFS(this.adjacencyList[vertex][i]);
+        }
+      }
+    }
+
+    DFS(vertex);
+    return result;
+  }
 }
 
 
@@ -2150,7 +2173,7 @@ g.addEdge("E", "F");
 // mum
 // : 
 // (2) ['hyd', 'lko']
-
+console.log(g.DFSRecursive("A"))
 
 
 // add edge
