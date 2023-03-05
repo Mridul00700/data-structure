@@ -2095,7 +2095,7 @@ class Graph {
 
   addVertex(vertex) {
     if(!this.adjacencyList[vertex])
-    this.adjacencyList[vertex] = [];
+    this.adjacencyList[vertex] =  ;
   } 
 
   addEdge(vertex1, vertex2) {
@@ -2123,16 +2123,21 @@ class Graph {
 
 let g = new Graph();
 
-g.addVertex("lko")
-g.addVertex("del")
-g.addVertex("mum")
-g.addVertex("hyd")
-g.addEdge("lko", "del");
-g.addEdge("mum", "hyd");
-g.addEdge("mum", "lko");
-g.addEdge("hyd", "del");
+g.addVertex("A")
+g.addVertex("B")
+g.addVertex("C")
+g.addVertex("D")
+g.addVertex("E")
+g.addVertex("F")
+g.addEdge("A", "B");
+g.addEdge("A", "C");
+g.addEdge("B", "D");
+g.addEdge("C", "E");
+g.addEdge("D", "E");
+g.addEdge("D", "F");
+g.addEdge("E", "F");
 // g.removeEdge("mum", "hyd");
-g.removeVertex("hyd");
+// g.removeVertex("hyd");
 // del
 // : 
 // (2) ['lko', 'hyd']
@@ -2149,3 +2154,6 @@ g.removeVertex("hyd");
 
 
 // add edge
+
+//Depth first Graph
+// do one branch first
