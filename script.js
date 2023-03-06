@@ -2124,7 +2124,6 @@ class Graph {
     let visited = {}
 
     const DFS = (vertex) =>{
-      console.log(this)
       if(this.adjacencyList[vertex].length ===0){
         return
       }
@@ -2140,6 +2139,28 @@ class Graph {
 
     DFS(vertex);
     return result;
+  }
+
+
+  DFSIterative(vertex){
+    const stack = [vertex];
+    const result = [];
+    const visited = {};
+    let currentVertex;
+    
+    visited[vertex] = true;
+    while(stack.length){
+      currentVertex = stack.pop();
+      result.push(currentVertex);
+      
+      this.adjacencyList[currentVertex].forEach(ele => {
+        if(!visited[ele]){
+          visited[ele] = true;
+          stack.push(ele);
+        }
+      });
+    }
+    return result
   }
 }
 
@@ -2174,6 +2195,7 @@ g.addEdge("E", "F");
 // : 
 // (2) ['hyd', 'lko']
 console.log(g.DFSRecursive("A"))
+console.log(g.DFSIterative("A"))
 
 
 // add edge
