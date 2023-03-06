@@ -2162,6 +2162,26 @@ class Graph {
     }
     return result
   }
+
+  BFS(vertex){
+    const result = [];
+    const queue = [vertex];
+    const visited = {};
+    let currVertex;
+
+    visited[vertex] = true;
+    while(queue.length){
+      currVertex = queue.shift();
+      result.push(currVertex);
+      this.adjacencyList[currVertex].forEach(ele => {
+        if(!visited[ele]){
+        queue.push(ele);
+        visited[ele] = true;
+        }
+      });
+    }
+    return result;
+  }
 }
 
 
@@ -2194,8 +2214,9 @@ g.addEdge("E", "F");
 // mum
 // : 
 // (2) ['hyd', 'lko']
-console.log(g.DFSRecursive("A"))
-console.log(g.DFSIterative("A"))
+console.log(g.DFSRecursive("A"));
+console.log(g.DFSIterative("A"));
+console.log(g.BFS("A"));
 
 
 // add edge
