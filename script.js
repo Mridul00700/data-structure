@@ -2124,7 +2124,6 @@ class Graph {
     let visited = {}
 
     const DFS = (vertex) =>{
-      console.log(this)
       if(this.adjacencyList[vertex].length ===0){
         return
       }
@@ -2139,6 +2138,48 @@ class Graph {
     }
 
     DFS(vertex);
+    return result;
+  }
+
+
+  DFSIterative(vertex){
+    const stack = [vertex];
+    const result = [];
+    const visited = {};
+    let currentVertex;
+    
+    visited[vertex] = true;
+    while(stack.length){
+      currentVertex = stack.pop();
+      result.push(currentVertex);
+      
+      this.adjacencyList[currentVertex].forEach(ele => {
+        if(!visited[ele]){
+          visited[ele] = true;
+          stack.push(ele);
+        }
+      });
+    }
+    return result
+  }
+
+  BFS(vertex){
+    const result = [];
+    const queue = [vertex];
+    const visited = {};
+    let currVertex;
+
+    visited[vertex] = true;
+    while(queue.length){
+      currVertex = queue.shift();
+      result.push(currVertex);
+      this.adjacencyList[currVertex].forEach(ele => {
+        if(!visited[ele]){
+        queue.push(ele);
+        visited[ele] = true;
+        }
+      });
+    }
     return result;
   }
 }
@@ -2173,7 +2214,9 @@ g.addEdge("E", "F");
 // mum
 // : 
 // (2) ['hyd', 'lko']
-console.log(g.DFSRecursive("A"))
+console.log(g.DFSRecursive("A"));
+console.log(g.DFSIterative("A"));
+console.log(g.BFS("A"));
 
 
 // add edge
