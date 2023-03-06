@@ -2088,118 +2088,118 @@ console.log(radixSort(checkArray));
 //Adjacency list 
 
 
-class Graph {
-  constructor(){
-    this.adjacencyList = {}
-  }
+// class Graph {
+//   constructor(){
+//     this.adjacencyList = {}
+//   }
 
-  addVertex(vertex) {
-    if(!this.adjacencyList[vertex])
-    this.adjacencyList[vertex] =  [];
-  } 
+//   addVertex(vertex) {
+//     if(!this.adjacencyList[vertex])
+//     this.adjacencyList[vertex] =  [];
+//   } 
 
-  addEdge(vertex1, vertex2) {
-    this.adjacencyList[vertex1].push(vertex2);
-    this.adjacencyList[vertex2].push(vertex1);
+//   addEdge(vertex1, vertex2) {
+//     this.adjacencyList[vertex1].push(vertex2);
+//     this.adjacencyList[vertex2].push(vertex1);
 
-  }
+//   }
 
-  removeEdge(v1, v2){
-    this.adjacencyList[v1] = this.adjacencyList[v1].filter(val => val !== v2)
-    this.adjacencyList[v2] = this.adjacencyList[v2].filter(val => val !== v1)
-  }
+//   removeEdge(v1, v2){
+//     this.adjacencyList[v1] = this.adjacencyList[v1].filter(val => val !== v2)
+//     this.adjacencyList[v2] = this.adjacencyList[v2].filter(val => val !== v1)
+//   }
 
-  removeVertex(v) {
-    let len = this.adjacencyList[v].length
-    for(;this.adjacencyList[v].length >0;){
-      // console.log(v, this.adjacencyList[v][i],this.adjacencyList[v].length)
-      this.removeEdge(v, this.adjacencyList[v][0]);
-    }
-    delete this.adjacencyList[v]
-  } 
+//   removeVertex(v) {
+//     let len = this.adjacencyList[v].length
+//     for(;this.adjacencyList[v].length >0;){
+//       // console.log(v, this.adjacencyList[v][i],this.adjacencyList[v].length)
+//       this.removeEdge(v, this.adjacencyList[v][0]);
+//     }
+//     delete this.adjacencyList[v]
+//   } 
 
-  DFSRecursive(vertex){
+//   DFSRecursive(vertex){
 
-    let result = [];
-    let visited = {}
+//     let result = [];
+//     let visited = {}
 
-    const DFS = (vertex) =>{
-      if(this.adjacencyList[vertex].length ===0){
-        return
-      }
-      result.push(vertex);  
-      visited[vertex] = true
-      console.log(visited, result);
-      for(let i=0 ; i<this.adjacencyList[vertex].length; i++){
-        if(!visited[this.adjacencyList[vertex][i]]){
-          DFS(this.adjacencyList[vertex][i]);
-        }
-      }
-    }
+//     const DFS = (vertex) =>{
+//       if(this.adjacencyList[vertex].length ===0){
+//         return
+//       }
+//       result.push(vertex);  
+//       visited[vertex] = true
+//       console.log(visited, result);
+//       for(let i=0 ; i<this.adjacencyList[vertex].length; i++){
+//         if(!visited[this.adjacencyList[vertex][i]]){
+//           DFS(this.adjacencyList[vertex][i]);
+//         }
+//       }
+//     }
 
-    DFS(vertex);
-    return result;
-  }
+//     DFS(vertex);
+//     return result;
+//   }
 
 
-  DFSIterative(vertex){
-    const stack = [vertex];
-    const result = [];
-    const visited = {};
-    let currentVertex;
+//   DFSIterative(vertex){
+//     const stack = [vertex];
+//     const result = [];
+//     const visited = {};
+//     let currentVertex;
     
-    visited[vertex] = true;
-    while(stack.length){
-      currentVertex = stack.pop();
-      result.push(currentVertex);
+//     visited[vertex] = true;
+//     while(stack.length){
+//       currentVertex = stack.pop();
+//       result.push(currentVertex);
       
-      this.adjacencyList[currentVertex].forEach(ele => {
-        if(!visited[ele]){
-          visited[ele] = true;
-          stack.push(ele);
-        }
-      });
-    }
-    return result
-  }
+//       this.adjacencyList[currentVertex].forEach(ele => {
+//         if(!visited[ele]){
+//           visited[ele] = true;
+//           stack.push(ele);
+//         }
+//       });
+//     }
+//     return result
+//   }
 
-  BFS(vertex){
-    const result = [];
-    const queue = [vertex];
-    const visited = {};
-    let currVertex;
+//   BFS(vertex){
+//     const result = [];
+//     const queue = [vertex];
+//     const visited = {};
+//     let currVertex;
 
-    visited[vertex] = true;
-    while(queue.length){
-      currVertex = queue.shift();
-      result.push(currVertex);
-      this.adjacencyList[currVertex].forEach(ele => {
-        if(!visited[ele]){
-        queue.push(ele);
-        visited[ele] = true;
-        }
-      });
-    }
-    return result;
-  }
-}
+//     visited[vertex] = true;
+//     while(queue.length){
+//       currVertex = queue.shift();
+//       result.push(currVertex);
+//       this.adjacencyList[currVertex].forEach(ele => {
+//         if(!visited[ele]){
+//         queue.push(ele);
+//         visited[ele] = true;
+//         }
+//       });
+//     }
+//     return result;
+//   }
+// }
 
 
-let g = new Graph();
+// let g = new Graph();
 
-g.addVertex("A")
-g.addVertex("B")
-g.addVertex("C")
-g.addVertex("D")
-g.addVertex("E")
-g.addVertex("F")
-g.addEdge("A", "B");
-g.addEdge("A", "C");
-g.addEdge("B", "D");
-g.addEdge("C", "E");
-g.addEdge("D", "E");
-g.addEdge("D", "F");
-g.addEdge("E", "F");
+// g.addVertex("A")
+// g.addVertex("B")
+// g.addVertex("C")
+// g.addVertex("D")
+// g.addVertex("E")
+// g.addVertex("F")
+// g.addEdge("A", "B");
+// g.addEdge("A", "C");
+// g.addEdge("B", "D");
+// g.addEdge("C", "E");
+// g.addEdge("D", "E");
+// g.addEdge("D", "F");
+// g.addEdge("E", "F");
 // g.removeEdge("mum", "hyd");
 // g.removeVertex("hyd");
 // del
@@ -2214,12 +2214,61 @@ g.addEdge("E", "F");
 // mum
 // : 
 // (2) ['hyd', 'lko']
-console.log(g.DFSRecursive("A"));
-console.log(g.DFSIterative("A"));
-console.log(g.BFS("A"));
+// console.log(g.DFSRecursive("A"));
+// console.log(g.DFSIterative("A"));
+// console.log(g.BFS("A"));
 
 
 // add edge
 
 //Depth first Graph
 // do one branch first
+
+
+//Dijkstra's Algo 
+
+// Shortest path from point A to point B
+// We need weighted graph
+
+// class Node {
+//   constructor(v, weight){
+//     this.node = v;
+//     this.weight = weight 
+//   }
+// }
+
+class WeightedGraph {
+  constructor(){
+    this.adjacencyList = {};
+  }
+
+  addVertex(vertex){
+    if(!this.adjacencyList[vertex]){
+      this.adjacencyList[vertex] = [];
+    }
+  }
+
+  addEdge(vertex1, vertex2, weight){
+    // this.adjacencyList[vertex1] = [...this.adjacencyList[vertex1] , new Node(vertex2, weight)];
+    // this.adjacencyList[vertex2] = [...this.adjacencyList[vertex2] , new Node(vertex1, weight)];
+    this.adjacencyList[vertex1].push({node: vertex2, weight})
+    this.adjacencyList[vertex2].push({node: vertex1, weight})
+  }
+
+}
+
+const wg = new WeightedGraph();
+
+wg.addVertex("A")
+wg.addVertex("B")
+wg.addVertex("C")
+wg.addVertex("D")
+wg.addVertex("E")
+wg.addVertex("F")
+wg.addEdge("A", "B", 10);
+wg.addEdge("A", "C", 20);
+wg.addEdge("B", "D", 30);
+wg.addEdge("C", "E", 45);
+wg.addEdge("D", "E",121);
+wg.addEdge("D", "F",11);
+wg.addEdge("E", "F", 1);
