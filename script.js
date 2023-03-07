@@ -2237,38 +2237,61 @@ console.log(radixSort(checkArray));
 //   }
 // }
 
-class WeightedGraph {
+// class WeightedGraph {
+//   constructor(){
+//     this.adjacencyList = {};
+//   }
+
+//   addVertex(vertex){
+//     if(!this.adjacencyList[vertex]){
+//       this.adjacencyList[vertex] = [];
+//     }
+//   }
+
+//   addEdge(vertex1, vertex2, weight){
+//     // this.adjacencyList[vertex1] = [...this.adjacencyList[vertex1] , new Node(vertex2, weight)];
+//     // this.adjacencyList[vertex2] = [...this.adjacencyList[vertex2] , new Node(vertex1, weight)];
+//     this.adjacencyList[vertex1].push({node: vertex2, weight})
+//     this.adjacencyList[vertex2].push({node: vertex1, weight})
+//   }
+
+// }
+
+// const wg = new WeightedGraph();
+
+// wg.addVertex("A")
+// wg.addVertex("B")
+// wg.addVertex("C")
+// wg.addVertex("D")
+// wg.addVertex("E")
+// wg.addVertex("F")
+// wg.addEdge("A", "B", 10);
+// wg.addEdge("A", "C", 20);
+// wg.addEdge("B", "D", 30);
+// wg.addEdge("C", "E", 45);
+// wg.addEdge("D", "E",121);
+// wg.addEdge("D", "F",11);
+// wg.addEdge("E", "F", 1);
+
+class PriorityQueue {
   constructor(){
-    this.adjacencyList = {};
+    this.values = []
   }
 
-  addVertex(vertex){
-    if(!this.adjacencyList[vertex]){
-      this.adjacencyList[vertex] = [];
-    }
+  enqueue(val, priority){
+    this.values.push({val, priority});
+    this.sort();
   }
 
-  addEdge(vertex1, vertex2, weight){
-    // this.adjacencyList[vertex1] = [...this.adjacencyList[vertex1] , new Node(vertex2, weight)];
-    // this.adjacencyList[vertex2] = [...this.adjacencyList[vertex2] , new Node(vertex1, weight)];
-    this.adjacencyList[vertex1].push({node: vertex2, weight})
-    this.adjacencyList[vertex2].push({node: vertex1, weight})
+  dequeue(){
+    const first = this.values.shift();
+    return first;
+  }
+
+  sort(){
+    this.values.sort((a, b) => a.priority - b.priority); 
   }
 
 }
 
-const wg = new WeightedGraph();
-
-wg.addVertex("A")
-wg.addVertex("B")
-wg.addVertex("C")
-wg.addVertex("D")
-wg.addVertex("E")
-wg.addVertex("F")
-wg.addEdge("A", "B", 10);
-wg.addEdge("A", "C", 20);
-wg.addEdge("B", "D", 30);
-wg.addEdge("C", "E", 45);
-wg.addEdge("D", "E",121);
-wg.addEdge("D", "F",11);
-wg.addEdge("E", "F", 1);
+let P = new PriorityQueue();
