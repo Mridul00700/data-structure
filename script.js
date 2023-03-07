@@ -2295,3 +2295,46 @@ class PriorityQueue {
 }
 
 let P = new PriorityQueue();
+
+class WeightedGraph {
+  constructor(){
+    this.adjacencyList = {};
+  }
+
+  addVertex(vertex){
+    if(!this.adjacencyList[vertex]){
+      this.adjacencyList[vertex] = [];
+    }
+  }
+
+  addEdge(vertex1, vertex2, weight){
+    // this.adjacencyList[vertex1] = [...this.adjacencyList[vertex1] , new Node(vertex2, weight)];
+    // this.adjacencyList[vertex2] = [...this.adjacencyList[vertex2] , new Node(vertex1, weight)];
+    this.adjacencyList[vertex1].push({node: vertex2, weight})
+    this.adjacencyList[vertex2].push({node: vertex1, weight})
+  }
+
+}
+
+const wg = new WeightedGraph();
+
+wg.addVertex("A")
+wg.addVertex("B")
+wg.addVertex("C")
+wg.addVertex("D")
+wg.addVertex("E")
+wg.addVertex("F")
+
+
+wg.addEdge("A", "B", 4);
+wg.addEdge("A", "C", 2);
+wg.addEdge("B", "E", 3);
+wg.addEdge("C", "D", 2);
+wg.addEdge("C", "F", 4);
+wg.addEdge("D", "E", 3);
+wg.addEdge("D", "F", 1);
+wg.addEdge("E", "F", 1);
+
+function DijkstraS (start, end){
+  
+}
