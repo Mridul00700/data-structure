@@ -2528,4 +2528,33 @@ function fib (n) {
   return fib(n-1) + fib(n-2)
 }
 
-console.log(fib(5));
+console.log(fib(6));
+
+function fibDynamic (n, memo=[]) {
+  if(memo[n] !== undefined){
+    return memo[n];
+  }
+  // console.log(n);
+  if(n<=2) return 1;
+
+  let res = fibDynamic(n-1, memo) + fibDynamic(n-2, memo);
+
+  memo[n] = res;
+  // console.log(memo)
+  return res;
+
+} 
+
+function fibDynamicSmall (n, memo=[undefined, 1, 1]) {
+  if(memo[n] !== undefined){
+    return memo[n];
+  }
+  let res = fibDynamic(n-1, memo) + fibDynamic(n-2, memo);
+
+  memo[n] = res;
+  return res;
+
+} 
+
+console.log(fibDynamic(6));
+console.log(fibDynamicSmall(6));
