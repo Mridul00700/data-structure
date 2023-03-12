@@ -2520,41 +2520,68 @@ console.log(radixSort(checkArray));
 
 //Fibonacci series 
 
-function fib (n) {
-  console.log(n)
-  if(n <= 2){
-    return 1
-  }
-  return fib(n-1) + fib(n-2)
-}
+// function fib (n) {
+//   console.log(n)
+//   if(n <= 2){
+//     return 1
+//   }
+//   return fib(n-1) + fib(n-2)
+// }
 
-console.log(fib(6));
+// console.log(fib(6));
 
-function fibDynamic (n, memo=[]) {
-  if(memo[n] !== undefined){
-    return memo[n];
-  }
-  // console.log(n);
-  if(n<=2) return 1;
+// function fibDynamic (n, memo=[]) {
+//   if(memo[n] !== undefined){
+//     return memo[n];
+//   }
+//   // console.log(n);
+//   if(n<=2) return 1;
 
-  let res = fibDynamic(n-1, memo) + fibDynamic(n-2, memo);
+//   let res = fibDynamic(n-1, memo) + fibDynamic(n-2, memo);
 
-  memo[n] = res;
-  // console.log(memo)
-  return res;
+//   memo[n] = res;
+//   // console.log(memo)
+//   return res;
 
-} 
+// } 
 
 function fibDynamicSmall (n, memo=[undefined, 1, 1]) {
   if(memo[n] !== undefined){
     return memo[n];
   }
-  let res = fibDynamic(n-1, memo) + fibDynamic(n-2, memo);
+  let res = fibDynamicSmall(n-1, memo) + fibDynamicSmall(n-2, memo);
 
   memo[n] = res;
   return res;
 
 } 
 
-console.log(fibDynamic(6));
-console.log(fibDynamicSmall(6));
+function functionTib ( n) {
+  if(n<=2)  return 1;
+  let fib = [0, 1, 1];
+  for(let i=3; i<= n; i++){
+    fib[i] = fib[i-1] + fib[i-2];
+  }
+  return fib[n];
+}
+
+function fibTabulation (n) {
+  let sum =0;
+  let a = 0;
+  let b = 1;
+  let c=0;
+  // console.log(sum);
+  while(c<n){
+    c++
+    a = b;
+    b=sum;
+    sum = a + b;
+    // console.log(sum);
+  }
+  return sum
+} 
+
+// console.log(fibDynamic(6));
+console.log(fibDynamicSmall(100));
+console.log(fibTabulation(100));
+console.log(functionTib(100));
