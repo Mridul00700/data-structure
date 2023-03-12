@@ -2513,3 +2513,19 @@ console.log(radixSort(checkArray));
 
 //Dyanamic Programming 
 
+// When to use
+// Overlapping subproblems sub problems we have should be overalaping or repeating
+// Optimal Substructure 
+
+
+//Fibonacci series 
+
+function fib (n) {
+  console.log(n)
+  if(n <= 1){
+    return 1
+  }
+  return fib(n-1) + fib(n-2)
+}
+
+console.log(fib(5));
