@@ -2296,215 +2296,292 @@ console.log(radixSort(checkArray));
 
 // let P = new PriorityQueue();
 
-class WeightedGraph {
-  constructor(){
-    this.adjacencyList = {};
-  }
+// class WeightedGraph {
+//   constructor(){
+//     this.adjacencyList = {};
+//   }
 
-  addVertex(vertex){
-    if(!this.adjacencyList[vertex]){
-      this.adjacencyList[vertex] = [];
-    }
-  }
+//   addVertex(vertex){
+//     if(!this.adjacencyList[vertex]){
+//       this.adjacencyList[vertex] = [];
+//     }
+//   }
 
-  addEdge(vertex1, vertex2, weight){
-    // this.adjacencyList[vertex1] = [...this.adjacencyList[vertex1] , new Node(vertex2, weight)];
-    // this.adjacencyList[vertex2] = [...this.adjacencyList[vertex2] , new Node(vertex1, weight)];
-    this.adjacencyList[vertex1].push({node: vertex2, weight})
-    this.adjacencyList[vertex2].push({node: vertex1, weight})
-  }
+//   addEdge(vertex1, vertex2, weight){
+//     // this.adjacencyList[vertex1] = [...this.adjacencyList[vertex1] , new Node(vertex2, weight)];
+//     // this.adjacencyList[vertex2] = [...this.adjacencyList[vertex2] , new Node(vertex1, weight)];
+//     this.adjacencyList[vertex1].push({node: vertex2, weight})
+//     this.adjacencyList[vertex2].push({node: vertex1, weight})
+//   }
 
-  DijkstraS(start, end) {
-    const nodes = new PriorityQueue();
-    const distances = {};
-    const previous = {};
-    let smallest;
-    let path =[];
-    for(let vertex in this.adjacencyList){
-      if(vertex ===start){
-        distances[vertex] = 0;
-        nodes.enqueue(vertex, 0)
-      }
-      else {
-        distances[vertex] = Infinity
-        nodes.enqueue(vertex, Infinity)
-      }
-      previous[vertex] = null;
-    }
-    // console.log(distances, this.adjacencyList, )
-    while(nodes.values.length){
-      smallest = nodes.dequeue().val;
-      if(smallest === end){
-        console.log(distances)
-        console.log(previous)
+//   DijkstraS(start, end) {
+//     const nodes = new PriorityQueue();
+//     const distances = {};
+//     const previous = {};
+//     let smallest;
+//     let path =[];
+//     for(let vertex in this.adjacencyList){
+//       if(vertex ===start){
+//         distances[vertex] = 0;
+//         nodes.enqueue(vertex, 0)
+//       }
+//       else {
+//         distances[vertex] = Infinity
+//         nodes.enqueue(vertex, Infinity)
+//       }
+//       previous[vertex] = null;
+//     }
+//     // console.log(distances, this.adjacencyList, )
+//     while(nodes.values.length){
+//       smallest = nodes.dequeue().val;
+//       if(smallest === end){
+//         console.log(distances)
+//         console.log(previous)
 
-        while(previous[smallest]){
-          path.push(smallest);
-          smallest = previous[smallest]
-        }
-        break;
-      }
-      for( let neighbour in this.adjacencyList[smallest]){
-        let nextNode = this.adjacencyList[smallest][neighbour];
-        let candidate = distances[smallest] + nextNode.weight
-        if(candidate < distances[nextNode.node]){
-          distances[nextNode.node] = candidate;
-          previous[nextNode.node] = smallest;
-          nodes.enqueue(nextNode.node, candidate);
-        }
-      }
-    }
+//         while(previous[smallest]){
+//           path.push(smallest);
+//           smallest = previous[smallest]
+//         }
+//         break;
+//       }
+//       for( let neighbour in this.adjacencyList[smallest]){
+//         let nextNode = this.adjacencyList[smallest][neighbour];
+//         let candidate = distances[smallest] + nextNode.weight
+//         if(candidate < distances[nextNode.node]){
+//           distances[nextNode.node] = candidate;
+//           previous[nextNode.node] = smallest;
+//           nodes.enqueue(nextNode.node, candidate);
+//         }
+//       }
+//     }
 
-    return path.concat(smallest).reverse();
+//     return path.concat(smallest).reverse();
 
-  }
+//   }
 
-}
-// function DijkstraS (start, end){
-//   P.enqueue(start)
+// }
+// // function DijkstraS (start, end){
+// //   P.enqueue(start)
+// // }
+
+
+
+// class PriorityQueue {
+//   constructor(){
+//     this.values = []
+//   }
+
+//   bubleUp(index){
+//     // console.log("index", index);
+//     if(index===0)
+//     return
+//     let parentIndex = Math.floor((index - 1) / 2); 
+//     if(this.values[parentIndex].priority > this.values[index].priority){
+//       // [this.values[parentIndex], this.values[index]] = [this.values[index], this.values[parentIndex]]
+//       let temp = this.values[parentIndex];
+//       this.values[parentIndex] = this.values[index];
+//       this.values[index] = temp;
+//     }
+//     else {
+//       return
+//     }
+//     this.bubleUp(parentIndex);
+//   }
+
+//   enqueue(val, priority){
+//     const newNode = new Node(val, priority);
+//     this.values.push(newNode);
+//     this.bubleUp(this.values.length-1)
+//     return this.values;
+//   }
+
+//   sinkDown(index) {
+//     if(index>= this.values.length-1){
+//       return
+//     }
+//     let leftChild = this.values[((2 * index) +1)]
+//     let rightChild = this.values[((2 * index) +2)]
+//     // console.log(this.values[index], index)
+//     if(this.values[index].priority < leftChild?.priority && this.values[index].priority < rightChild?.priority){
+//       return
+//     }
+//     // console.log("left",leftChild,"right",rightChild)
+//     if(leftChild?.priority < rightChild?.priority || rightChild === undefined){  
+//       // console.log("left",leftChild, index)
+//       if(!leftChild || leftChild?.priority > this.values[index].priority){
+//         return
+//       }
+//       // [leftChild, this.values[index]] = [this.values[index], leftChild];
+//       this.values[((2 * index) +1)] = this.values[index];
+//       this.values[index] = leftChild;
+//       index = ((2 * index) +1);
+//     }else {
+//       // console.log("right",rightChild);
+//       if(!rightChild || rightChild?.priority > this.values[index]){
+//         return
+//       }
+//       // [rightChild, this.values[index]] = [this.values[index], rightChild];
+//       this.values[((2 * index) +2)] = this.values[index]
+//       this.values[index] = rightChild;
+//       index = ((2 * index) +2);
+//     }
+//     this.sinkDown(index)
+//   }
+
+//   sinkDown2() {
+//     let index = 0;
+//     const length = this.values.length;
+//     const element = this.values[0];
+//     while(true){
+//       let leftChildIndex = 2 * index + 1;
+//       let rightChildIndex = 2 * index + 2;
+//       let leftChild;
+//       let rightChild;
+//       let swap = null;
+
+//       if(leftChildIndex < length){
+//         leftChild = this.values[leftChildIndex]
+//         if(leftChild.priority < element.priority){
+//           swap = leftChildIndex;
+//         }
+//       }
+//       if(rightChildIndex < length){
+//         rightChild = this.values[rightChildIndex]
+//         if((swap === null && rightChild.priority < element) || (swap !== null && rightChild.priority < leftChild.priority)){
+//           swap = rightChildIndex;
+//         }
+//       }
+//       if(swap === null) break;
+//       this.values[index] = this.values[swap];
+//       this.values[swap] = element;
+//       index = swap;
+//       element = this.values[swap];
+//     }
+//   }
+
+
+//   dequeue2(){
+//     let first = this.values[0]
+//     let last = this.values.pop();
+//     if(this.values.length > 0){
+//       this.values[0] =last
+//     }
+//     this.sinkDown2();
+//     return first;
+//   }
+//   dequeue(){
+//     let first = this.values[0]
+//     let last = this.values.pop();
+//     if(this.values.length > 0){
+//       this.values[0] =last
+//     }
+//     this.sinkDown(0);
+//     return first;
+//   }
 // }
 
+// class Node {
+//   constructor(val, priority){
+//     this.val = val;
+//     this.priority = priority;
+//   }
+// }
+
+// const wg = new WeightedGraph();
+
+// wg.addVertex("A")
+// wg.addVertex("B")
+// wg.addVertex("C")
+// wg.addVertex("D")
+// wg.addVertex("E")
+// wg.addVertex("F")
 
 
-class PriorityQueue {
-  constructor(){
-    this.values = []
+// wg.addEdge("A", "B", 4);
+// wg.addEdge("A", "C", 2);
+// wg.addEdge("B", "E", 3);
+// wg.addEdge("C", "D", 2);
+// wg.addEdge("C", "F", 4);
+// wg.addEdge("D", "E", 3);
+// wg.addEdge("D", "F", 1);
+// wg.addEdge("E", "F", 1);
+
+
+// console.log(wg.DijkstraS("A", "E"));
+
+
+
+//Dyanamic Programming 
+
+// When to use
+// Overlapping subproblems sub problems we have should be overalaping or repeating
+// Optimal Substructure 
+
+
+//Fibonacci series 
+
+// function fib (n) {
+//   console.log(n)
+//   if(n <= 2){
+//     return 1
+//   }
+//   return fib(n-1) + fib(n-2)
+// }
+
+// console.log(fib(6));
+
+// function fibDynamic (n, memo=[]) {
+//   if(memo[n] !== undefined){
+//     return memo[n];
+//   }
+//   // console.log(n);
+//   if(n<=2) return 1;
+
+//   let res = fibDynamic(n-1, memo) + fibDynamic(n-2, memo);
+
+//   memo[n] = res;
+//   // console.log(memo)
+//   return res;
+
+// } 
+
+function fibDynamicSmall (n, memo=[undefined, 1, 1]) {
+  if(memo[n] !== undefined){
+    return memo[n];
   }
+  let res = fibDynamicSmall(n-1, memo) + fibDynamicSmall(n-2, memo);
 
-  bubleUp(index){
-    // console.log("index", index);
-    if(index===0)
-    return
-    let parentIndex = Math.floor((index - 1) / 2); 
-    if(this.values[parentIndex].priority > this.values[index].priority){
-      // [this.values[parentIndex], this.values[index]] = [this.values[index], this.values[parentIndex]]
-      let temp = this.values[parentIndex];
-      this.values[parentIndex] = this.values[index];
-      this.values[index] = temp;
-    }
-    else {
-      return
-    }
-    this.bubleUp(parentIndex);
+  memo[n] = res;
+  return res;
+
+} 
+
+function functionTib ( n) {
+  if(n<=2)  return 1;
+  let fib = [0, 1, 1];
+  for(let i=3; i<= n; i++){
+    fib[i] = fib[i-1] + fib[i-2];
   }
-
-  enqueue(val, priority){
-    const newNode = new Node(val, priority);
-    this.values.push(newNode);
-    this.bubleUp(this.values.length-1)
-    return this.values;
-  }
-
-  sinkDown(index) {
-    if(index>= this.values.length-1){
-      return
-    }
-    let leftChild = this.values[((2 * index) +1)]
-    let rightChild = this.values[((2 * index) +2)]
-    // console.log(this.values[index], index)
-    if(this.values[index].priority < leftChild?.priority && this.values[index].priority < rightChild?.priority){
-      return
-    }
-    // console.log("left",leftChild,"right",rightChild)
-    if(leftChild?.priority < rightChild?.priority || rightChild === undefined){  
-      // console.log("left",leftChild, index)
-      if(!leftChild || leftChild?.priority > this.values[index].priority){
-        return
-      }
-      // [leftChild, this.values[index]] = [this.values[index], leftChild];
-      this.values[((2 * index) +1)] = this.values[index];
-      this.values[index] = leftChild;
-      index = ((2 * index) +1);
-    }else {
-      // console.log("right",rightChild);
-      if(!rightChild || rightChild?.priority > this.values[index]){
-        return
-      }
-      // [rightChild, this.values[index]] = [this.values[index], rightChild];
-      this.values[((2 * index) +2)] = this.values[index]
-      this.values[index] = rightChild;
-      index = ((2 * index) +2);
-    }
-    this.sinkDown(index)
-  }
-
-  sinkDown2() {
-    let index = 0;
-    const length = this.values.length;
-    const element = this.values[0];
-    while(true){
-      let leftChildIndex = 2 * index + 1;
-      let rightChildIndex = 2 * index + 2;
-      let leftChild;
-      let rightChild;
-      let swap = null;
-
-      if(leftChildIndex < length){
-        leftChild = this.values[leftChildIndex]
-        if(leftChild.priority < element.priority){
-          swap = leftChildIndex;
-        }
-      }
-      if(rightChildIndex < length){
-        rightChild = this.values[rightChildIndex]
-        if((swap === null && rightChild.priority < element) || (swap !== null && rightChild.priority < leftChild.priority)){
-          swap = rightChildIndex;
-        }
-      }
-      if(swap === null) break;
-      this.values[index] = this.values[swap];
-      this.values[swap] = element;
-      index = swap;
-      element = this.values[swap];
-    }
-  }
-
-
-  dequeue2(){
-    let first = this.values[0]
-    let last = this.values.pop();
-    if(this.values.length > 0){
-      this.values[0] =last
-    }
-    this.sinkDown2();
-    return first;
-  }
-  dequeue(){
-    let first = this.values[0]
-    let last = this.values.pop();
-    if(this.values.length > 0){
-      this.values[0] =last
-    }
-    this.sinkDown(0);
-    return first;
-  }
+  return fib[n];
 }
 
-class Node {
-  constructor(val, priority){
-    this.val = val;
-    this.priority = priority;
+function fibTabulation (n) {
+  let sum =0;
+  let a = 0;
+  let b = 1;
+  let c=0;
+  // console.log(sum);
+  while(c<n){
+    c++
+    a = b;
+    b=sum;
+    sum = a + b;
+    // console.log(sum);
   }
-}
+  return sum
+} 
 
-const wg = new WeightedGraph();
-
-wg.addVertex("A")
-wg.addVertex("B")
-wg.addVertex("C")
-wg.addVertex("D")
-wg.addVertex("E")
-wg.addVertex("F")
-
-
-wg.addEdge("A", "B", 4);
-wg.addEdge("A", "C", 2);
-wg.addEdge("B", "E", 3);
-wg.addEdge("C", "D", 2);
-wg.addEdge("C", "F", 4);
-wg.addEdge("D", "E", 3);
-wg.addEdge("D", "F", 1);
-wg.addEdge("E", "F", 1);
-
-
-console.log(wg.DijkstraS("A", "E"));
+// console.log(fibDynamic(6));
+console.log(fibDynamicSmall(100));
+console.log(fibTabulation(100));
+console.log(functionTib(100));
