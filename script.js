@@ -2545,43 +2545,126 @@ console.log(radixSort(checkArray));
 
 // } 
 
-function fibDynamicSmall (n, memo=[undefined, 1, 1]) {
-  if(memo[n] !== undefined){
-    return memo[n];
+// function fibDynamicSmall (n, memo=[undefined, 1, 1]) {
+//   if(memo[n] !== undefined){
+//     return memo[n];
+//   }
+//   let res = fibDynamicSmall(n-1, memo) + fibDynamicSmall(n-2, memo);
+
+//   memo[n] = res;
+//   return res;
+
+// } 
+
+// function functionTib ( n) {
+//   if(n<=2)  return 1;
+//   let fib = [0, 1, 1];
+//   for(let i=3; i<= n; i++){
+//     fib[i] = fib[i-1] + fib[i-2];
+//   }
+//   return fib[n];
+// }
+
+// function fibTabulation (n) {
+//   let sum =0;
+//   let a = 0;
+//   let b = 1;
+//   let c=0;
+//   // console.log(sum);
+//   while(c<n){
+//     c++
+//     a = b;
+//     b=sum;
+//     sum = a + b;
+//     // console.log(sum);
+//   }
+//   return sum
+// } 
+
+// // console.log(fibDynamic(6));
+// console.log(fibDynamicSmall(100));
+// console.log(fibTabulation(100));
+// console.log(functionTib(100));
+
+// ////Patterns
+// function developer (age, skill) {
+//   this.age = age;
+//   this.skill = skill;
+// }
+
+// function tester (age, skill) {
+//   this.age= age;
+//   this.skill = skill;
+// }
+
+// // console.log(new tester(25, 'selenium'));
+// // console.log(new developer(25, 'react'));
+// // console.log(new tester(27, 'java'));
+// // console.log(new tester(29, 'javaScript'));
+
+// // type 1 = developer;
+// // type 2 = tester;
+// function employeeFactory () {
+//   this.create = (age, skill, type) => {
+//      switch(type){
+//     case 1:
+//       return new developer(age, skill);
+//     case 2: 
+//       return new tester(age, skill);
+//     default:
+//       console.log("Invalid employee type")
+//   }}
+// }
+
+// function show (){
+//   console.log(this.skill, this.age);
+// }
+
+// const factory = new employeeFactory();
+
+// const employee =[];
+// employee.push(factory.create(23, 'react', 1));
+// employee.push(factory.create(25, 'selenium', 2));
+// employee.push(factory.create(28, 'JavaScript', 1));
+
+// employee.forEach(emp => show.call(emp));
+
+
+
+////////////// Design Patterns //////////////////
+
+
+class Journal {
+  
+  constructor(){
+    this.entries = {};
   }
-  let res = fibDynamicSmall(n-1, memo) + fibDynamicSmall(n-2, memo);
-
-  memo[n] = res;
-  return res;
-
-} 
-
-function functionTib ( n) {
-  if(n<=2)  return 1;
-  let fib = [0, 1, 1];
-  for(let i=3; i<= n; i++){
-    fib[i] = fib[i-1] + fib[i-2];
+  
+  addEntry(text){
+    
+    let c = ++Journal.count;
+    this.entries[c] = `${c} : ${text}`;
+    return c;
   }
-  return fib[n];
+  
+  deleteEntry(index){
+    delete this.entries[index];
+  }
+  
+  toString(){
+    return Object.values(this.entries).join("\n");
+  }
+  
 }
 
-function fibTabulation (n) {
-  let sum =0;
-  let a = 0;
-  let b = 1;
-  let c=0;
-  // console.log(sum);
-  while(c<n){
-    c++
-    a = b;
-    b=sum;
-    sum = a + b;
-    // console.log(sum);
-  }
-  return sum
-} 
+Journal.count = 0;
 
-// console.log(fibDynamic(6));
-console.log(fibDynamicSmall(100));
-console.log(fibTabulation(100));
-console.log(functionTib(100));
+const journal = new Journal();
+journal.addEntry("I did something!");
+journal.addEntry("I did another thing!");
+
+console.log(journal.toString());
+
+
+
+
