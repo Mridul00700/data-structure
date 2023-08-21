@@ -2634,37 +2634,144 @@ console.log(radixSort(checkArray));
 ////////////// Design Patterns //////////////////
 
 
-class Journal {
+// Single responsibility
+
+// class Journal {
   
-  constructor(){
-    this.entries = {};
-  }
+//   constructor(){
+//     this.entries = {};
+//   }
   
-  addEntry(text){
+//   addEntry(text){
     
-    let c = ++Journal.count;
-    this.entries[c] = `${c} : ${text}`;
-    return c;
-  }
+//     let c = ++Journal.count;
+//     this.entries[c] = `${c} : ${text}`;
+//     return c;
+//   }
   
-  deleteEntry(index){
-    delete this.entries[index];
-  }
+//   deleteEntry(index){
+//     delete this.entries[index];
+//   }
   
-  toString(){
-    return Object.values(this.entries).join("\n");
-  }
+//   toString(){
+//     return Object.values(this.entries).join("\n");
+//   }
   
-}
+// }
 
-Journal.count = 0;
+// Journal.count = 0;
 
-const journal = new Journal();
-journal.addEntry("I did something!");
-journal.addEntry("I did another thing!");
+// const journal = new Journal();
+// journal.addEntry("I did something!");
+// journal.addEntry("I did another thing!");
 
-console.log(journal.toString());
+// console.log(journal.toString());
 
+
+// Open Close 
+
+// const color = Object.freeze({
+//   red: 'red',
+//   blue: 'blue',
+//   green: 'green'
+// })
+
+// const size = Object.freeze({
+//   small: 'small',
+//   medium: 'medium',
+//   large: 'large'
+// })
+
+
+// class Product {
+  
+//    constructor(name,color, size, ) {
+//      this.name = name;
+//      this.color = color;
+//      this.size = size;
+//    }
+// }
+
+// class ProductFilter {
+//   filterByColor(products, color){
+//     return products.filter(p => p.color === color);
+//   }
+//   filterBySize(products, size){
+//     return products.filter(p => p.size === size);
+//   }
+  
+//   // Filter size and color
+//   // state space explosion...
+//   // 3 criteria = 7 methods
+// }
+
+// // specification
+
+// class ColorSpecification {
+  
+//    constructor(color){
+//      this.color = color;
+//    }
+  
+//   isSatisfied(item){
+//     return item.color === this.color;
+//   }
+  
+// }
+// class SizeSpecification {
+  
+//    constructor(size){
+//      this.size = size;
+//    }
+  
+//   isSatisfied(item){
+//     return item.size === this.size;
+//   }
+// }
+
+
+
+
+
+// const apple = new Product('Apple', color.green, size.small);
+// const tree = new Product('Tree', color.green, size.large);
+// const house = new Product('House', color.blue, size.large);
+
+// const products = [apple, tree, house];
+
+// const PF = new ProductFilter();
+
+
+// for(let p of  PF.filterByColor(products, color.green))
+// {
+//   console.log(`${p.name} is green`);
+// }
+
+
+// for(let p of  PF.filterByColor(products, color.blue))
+// {
+//   console.log(`${p.name} is blue`);
+// }
+
+
+// class BetterFilter {
+  
+//   filter(items, spec){
+// //     console.log(items, spec)
+//     return items.filter(x => spec.isSatisfied(x));
+//   }
+  
+// }
+
+
+// const bf = new BetterFilter();
+
+// console.log("Green product new approach");
+// // console.log(bf.filter(products, new ColorSpecification(color.green)))
+// for(let p of bf.filter(products, new ColorSpecification(color.green))){
+  
+//   console.log(`${p.name} is green`);
+// }
 
 
 
