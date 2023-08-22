@@ -2633,6 +2633,7 @@ console.log(radixSort(checkArray));
 
 ////////////// Design Patterns //////////////////
 
+// S.O.L.I.D
 
 // Single responsibility
 
@@ -2670,127 +2671,64 @@ console.log(radixSort(checkArray));
 
 // Open Close 
 
-const color = Object.freeze({
-  red: 'red',
-  blue: 'blue',
-  green: 'green'
-})
+// const color = Object.freeze({
+//   red: 'red',
+//   blue: 'blue',
+//   green: 'green'
+// })
 
-const size = Object.freeze({
-  small: 'small',
-  medium: 'medium',
-  large: 'large'
-})
+// const size = Object.freeze({
+//   small: 'small',
+//   medium: 'medium',
+//   large: 'large'
+// })
 
 
-class Product {
+// class Product {
   
-   constructor(name,color, size, ) {
-     this.name = name;
-     this.color = color;
-     this.size = size;
-   }
-}
+//    constructor(name,color, size, ) {
+//      this.name = name;
+//      this.color = color;
+//      this.size = size;
+//    }
+// }
 
-class ProductFilter {
-  filterByColor(products, color){
-    return products.filter(p => p.color === color);
-  }
-  filterBySize(products, size){
-    return products.filter(p => p.size === size);
-  }
+// class ProductFilter {
+//   filterByColor(products, color){
+//     return products.filter(p => p.color === color);
+//   }
+//   filterBySize(products, size){
+//     return products.filter(p => p.size === size);
+//   }
   
-  // Filter size and color
-  // state space explosion...
-  // 3 criteria = 7 methods
-}
+//   // Filter size and color
+//   // state space explosion...
+//   // 3 criteria = 7 methods
+// }
 
-// specification
+// // specification
 
-class ColorSpecification {
+// class ColorSpecification {
   
-   constructor(color){
-     this.color = color;
-   }
+//    constructor(color){
+//      this.color = color;
+//    }
   
-  isSatisfied(item){
-    return item.color === this.color;
-  }
+//   isSatisfied(item){
+//     return item.color === this.color;
+//   }
   
-}
-class SizeSpecification {
+// }
+// class SizeSpecification {
   
-   constructor(size){
-     this.size = size;
-   }
+//    constructor(size){
+//      this.size = size;
+//    }
   
-  isSatisfied(item){
-    return item.size === this.size;
-  }
-}
-
-
-
-
-
-const apple = new Product('Apple', color.green, size.small);
-const tree = new Product('Tree', color.green, size.large);
-const house = new Product('House', color.blue, size.large);
-
-const products = [apple, tree, house];
-
-const PF = new ProductFilter();
-
-
-for(let p of  PF.filterByColor(products, color.green))
-{
-  console.log(`${p.name} is green`);
-}
-
-
-for(let p of  PF.filterByColor(products, color.blue))
-{
-  console.log(`${p.name} is blue`);
-}
-
-
-class BetterFilter {
-  
-  filter(items, spec){
-//     console.log(items, spec)
-    return items.filter(x => spec.isSatisfied(x));
-  }
-  
-}
-class AndSpecification{
-  constructor(...specs){
-    this.specs = specs;
-  }
-  
-  isSatisfied(item){
-    return this.specs.every(x => x.isSatisfied(item))
-  }
-  
-}
-
-const bf = new BetterFilter();
-
-console.log("Green product new approach");
-// console.log(bf.filter(products, new ColorSpecification(color.green)))
-for(let p of bf.filter(products, new ColorSpecification(color.green))){
-  
-  console.log(`${p.name} is green`);
-}
-
-console.log("large and green");
-const spec = new AndSpecification(
-new ColorSpecification(color.green),
-  new SizeSpecification(size.large)
-)
-
-for(let p of bf.filter(products,spec)){
-  console.log("large and green :", p.name)
-}
+//   isSatisfied(item){
+//     return item.size === this.size;
+//   }
+// }
 
 
 
@@ -2825,7 +2763,16 @@ for(let p of bf.filter(products,spec)){
 //   }
   
 // }
-
+// class AndSpecification{
+//   constructor(...specs){
+//     this.specs = specs;
+//   }
+  
+//   isSatisfied(item){
+//     return this.specs.every(x => x.isSatisfied(item))
+//   }
+  
+// }
 
 // const bf = new BetterFilter();
 
@@ -2835,6 +2782,23 @@ for(let p of bf.filter(products,spec)){
   
 //   console.log(`${p.name} is green`);
 // }
+
+// console.log("large and green");
+// const spec = new AndSpecification(
+// new ColorSpecification(color.green),
+//   new SizeSpecification(size.large)
+// )
+
+// for(let p of bf.filter(products,spec)){
+//   console.log("large and green :", p.name)
+// }
+
+
+// You can seperate out the different specifications classes and build combinators out of it. "Just extend try not to modify"
+
+
+
+// Liskov principle
 
 
 
