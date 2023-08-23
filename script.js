@@ -2897,3 +2897,58 @@ useIt(sq)
 // }
 
 
+
+// Dependency inversion principle
+
+//defines relationship b/w Low level modules and high lvl modules
+// high lvl modules should not depend upon low level modules
+let RelationShip = Object.freeze({
+  parent: 0,
+  child: 1,
+  sibling: 2
+});
+
+class Person {
+  constructor(name){
+    this.name = name;
+  }
+}
+
+// Low - Level module
+class RelationShips {
+  constructor(){
+    this.data = [];
+  }
+
+  addParentAndChild(parent, child){
+    this.data.push({
+      from: parent,
+      type : RelationShip.parent,
+      to: child
+    })
+  }
+}
+
+let parent = new Person("John");
+let child1 = new Person("Dave");
+let child2 = new Person("lyaila");
+
+let rels = new RelationShips();
+
+rels.addParentAndChild(parent, child1);
+rels.addParentAndChild(parent, child2);
+
+
+// HIGH level Modules
+
+class Research {
+  constructor(relationShips){
+    let relations = relationShips.data;
+
+    for(let rel of relations.filter(r=> r.from.name === 'John' && r.type === RelationShip.parent)){
+      console.log(`John has a child named ${rel.to.name}`);
+    }
+  }
+}
+
+new Research(rels);
