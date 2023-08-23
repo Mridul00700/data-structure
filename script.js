@@ -2799,6 +2799,101 @@ console.log(radixSort(checkArray));
 
 
 // Liskov principle
+class Rectangle{
+  constructor(width, height){
+    this._width = width;
+    this._height = height;
+  }
+  
+  set width(value){
+    this._width = value;
+  }
+  
+  get height(){ return this._height}
+  get width(){ return this._width}
+  
+  set height(value) {
+    this._height = value;
+  }
+  get area(){
+    return this._height * this._width;
+  }
+  
+  toString(){
+    return `${this._height} * ${this._width}`;
+  }
+  
+}
 
+
+
+class Square extends Rectangle {
+  
+  constructor(value){
+    super(value, value)
+  }
+  
+  set height(value){
+    this._height = this._width = value;
+  }
+  
+  set width(value){
+    this._width = this._height = value;
+  }
+}
+
+const useIt = function(rc){
+  let width = rc._width;
+  rc.height = 10;
+  console.log(`Expected are of ${10*width}`)
+  console.log(`got ${rc.area}`);
+}
+
+let rc = new Rectangle(2,3);
+// console.log(rc.toString());
+useIt(rc);
+
+let sq = new Square(5);
+// console.log(sq.toString());
+// sq.height = 10;
+// console.log(sq.toString());
+useIt(sq)
+
+// solution is to remove square class and provide checks in rectangle.
+
+
+
+// Interface Segregation
+
+// seperate out the class function to only specific use cases. Don't want the user of the class to implement something they don't need.
+
+// class machine{
+//   constructor(){
+//     if(this.constructor.name === "machine"){
+//       throw new Error("machine is abstract");
+//     }
+//     print(doc){}
+//     fax(doc){}
+//     scan(doc){}
+
+//   }
+// } 
+
+// instead -> 
+// class Printer {
+//    constructor(){
+//     if(this.constructor.name === "Printer"){
+//       throw new Error("printer is abstract");
+//     }
+//     print(doc){};
+// }
+
+// class Scanner {
+//    constructor(){
+//     if(this.constructor.name === "Scanner"){
+//       throw new Error("scanner is abstract");
+//     }
+//     scan(doc){};
+// }
 
 
