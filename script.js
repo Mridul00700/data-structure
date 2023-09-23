@@ -2799,156 +2799,294 @@ console.log(radixSort(checkArray));
 
 
 // Liskov principle
-class Rectangle{
-  constructor(width, height){
-    this._width = width;
-    this._height = height;
-  }
-  
-  set width(value){
-    this._width = value;
-  }
-  
-  get height(){ return this._height}
-  get width(){ return this._width}
-  
-  set height(value) {
-    this._height = value;
-  }
-  get area(){
-    return this._height * this._width;
-  }
-  
-  toString(){
-    return `${this._height} * ${this._width}`;
-  }
-  
-}
-
-
-
-class Square extends Rectangle {
-  
-  constructor(value){
-    super(value, value)
-  }
-  
-  set height(value){
-    this._height = this._width = value;
-  }
-  
-  set width(value){
-    this._width = this._height = value;
-  }
-}
-
-const useIt = function(rc){
-  let width = rc._width;
-  rc.height = 10;
-  console.log(`Expected are of ${10*width}`)
-  console.log(`got ${rc.area}`);
-}
-
-let rc = new Rectangle(2,3);
-// console.log(rc.toString());
-useIt(rc);
-
-let sq = new Square(5);
-// console.log(sq.toString());
-// sq.height = 10;
-// console.log(sq.toString());
-useIt(sq)
-
-// solution is to remove square class and provide checks in rectangle.
-
-
-
-// Interface Segregation
-
-// seperate out the class function to only specific use cases. Don't want the user of the class to implement something they don't need.
-
-// class machine{
-//   constructor(){
-//     if(this.constructor.name === "machine"){
-//       throw new Error("machine is abstract");
-//     }
-//     print(doc){}
-//     fax(doc){}
-//     scan(doc){}
-
+// class Rectangle{
+//   constructor(width, height){
+//     this._width = width;
+//     this._height = height;
 //   }
-// } 
-
-// instead -> 
-// class Printer {
-//    constructor(){
-//     if(this.constructor.name === "Printer"){
-//       throw new Error("printer is abstract");
-//     }
-//     print(doc){};
+  
+//   set width(value){
+//     this._width = value;
+//   }
+  
+//   get height(){ return this._height}
+//   get width(){ return this._width}
+  
+//   set height(value) {
+//     this._height = value;
+//   }
+//   get area(){
+//     return this._height * this._width;
+//   }
+  
+//   toString(){
+//     return `${this._height} * ${this._width}`;
+//   }
+  
 // }
 
-// class Scanner {
-//    constructor(){
-//     if(this.constructor.name === "Scanner"){
-//       throw new Error("scanner is abstract");
+
+
+// class Square extends Rectangle {
+  
+//   constructor(value){
+//     super(value, value)
+//   }
+  
+//   set height(value){
+//     this._height = this._width = value;
+//   }
+  
+//   set width(value){
+//     this._width = this._height = value;
+//   }
+// }
+
+// const useIt = function(rc){
+//   let width = rc._width;
+//   rc.height = 10;
+//   console.log(`Expected are of ${10*width}`)
+//   console.log(`got ${rc.area}`);
+// }
+
+// let rc = new Rectangle(2,3);
+// // console.log(rc.toString());
+// useIt(rc);
+
+// let sq = new Square(5);
+// // console.log(sq.toString());
+// // sq.height = 10;
+// // console.log(sq.toString());
+// useIt(sq)
+
+// // solution is to remove square class and provide checks in rectangle.
+
+
+
+// // Interface Segregation
+
+// // seperate out the class function to only specific use cases. Don't want the user of the class to implement something they don't need.
+
+// // class machine{
+// //   constructor(){
+// //     if(this.constructor.name === "machine"){
+// //       throw new Error("machine is abstract");
+// //     }
+// //     print(doc){}
+// //     fax(doc){}
+// //     scan(doc){}
+
+// //   }
+// // } 
+
+// // instead -> 
+// // class Printer {
+// //    constructor(){
+// //     if(this.constructor.name === "Printer"){
+// //       throw new Error("printer is abstract");
+// //     }
+// //     print(doc){};
+// // }
+
+// // class Scanner {
+// //    constructor(){
+// //     if(this.constructor.name === "Scanner"){
+// //       throw new Error("scanner is abstract");
+// //     }
+// //     scan(doc){};
+// // }
+
+
+
+// // Dependency inversion principle
+
+// //defines relationship b/w Low level modules and high lvl modules
+// // high lvl modules should not depend upon low level modules
+// let RelationShip = Object.freeze({
+//   parent: 0,
+//   child: 1,
+//   sibling: 2
+// });
+
+// class Person {
+//   constructor(name){
+//     this.name = name;
+//   }
+// }
+
+// // Low - Level module
+// class RelationShips {
+//   constructor(){
+//     this.data = [];
+//   }
+
+//   addParentAndChild(parent, child){
+//     this.data.push({
+//       from: parent,
+//       type : RelationShip.parent,
+//       to: child
+//     })
+//   }
+// }
+
+// let parent = new Person("John");
+// let child1 = new Person("Dave");
+// let child2 = new Person("lyaila");
+
+// let rels = new RelationShips();
+
+// rels.addParentAndChild(parent, child1);
+// rels.addParentAndChild(parent, child2);
+
+
+// // HIGH level Modules
+
+// class Research {
+//   constructor(relationShips){
+//     let relations = relationShips.data;
+
+//     for(let rel of relations.filter(r=> r.from.name === 'John' && r.type === RelationShip.parent)){
+//       console.log(`John has a child named ${rel.to.name}`);
 //     }
-//     scan(doc){};
+//   }
+// }
+
+// new Research(rels);
+
+
+
+
+
+// your code goes here
+
+// const calculatePerCase = (input, len) =>{
+//     // case by case return string output
+//     input = input.trim();
+//     console.log("input", input)
+//     if(len===1){
+//         return 1
+//     }
+//     // console.log(len, input)
+//     let count =1;
+//     for(let i=1; i<input.length; i++){
+//         if(input[i] === ' '){
+//             console.log("here")
+//           input = input.substr(0, i) + input.substr(i+1, input.length);
+//           console.log(input)
+//         }
+//         console.log("compare", input[i], input[i-1])
+//         if((input[i-1] < 0 && input[i] >0) || (input[i-1] > 0 && input[i] <0)){
+//             count++;
+//         }else{
+//             return `${count} ${calculatePerCase(input.slice(1), len-1)}`
+//         }
+//         return `${count} ${calculatePerCase(input.slice(1), len-1)}`
+//     }
+    
+    
+// }
+
+// either write a function that does the array of number 
+
+
+//Alternating + - 
+
+// const convertToArrayofIntergers = (str) => {
+//   const arr = [];
+//   for(let i=0; i<str.length; i++){
+//       if(str[i] === "-" || str[i] === "+"){
+//           arr.push(parseInt(`${str[i] + str[i+1]}`));
+//           i++;
+//           continue;
+//       }
+//       arr.push(parseInt(str[i]));
+//   }
+//   return arr
+// }
+
+// const calculatePerCase = (input , len) => {
+//   // remove space
+//   input = input.trim();
+//   for(let i=0; i<input.length; i++){
+//       if(input[i] === ' '){
+//           input = input.substr(0, i) + input.substr(i+1, input.length);
+//       }
+//   }
+//   input = convertToArrayofIntergers(input);
+//   let count =1;
+//   const res = Array.from({length: input.length}, (x)=>1);
+//   let pointer = 0;
+//   for(let i=1; i<input.length; i++){
+//       if((input[i-1] < 0 && input[i] >0) || (input[i-1] > 0 && input[i] <0)){
+//           count++;
+//       }else {
+//           res[pointer] = count;
+//           count =1;
+//           pointer=i;
+//       }
+//   }
+//   res[pointer] = count
+//   let result = "";
+//   for(let i=0; i < res.length;){
+//       if(res[i] >1){
+//           for(let j=res[i]; j>0; j--){
+//               result+= " "+ j;
+//               i++;
+//           }
+//       }else {
+//           result+= " "+ res[i];
+//           i++
+//       }
+//   }
+//   return result.trim();
 // }
 
 
-
-// Dependency inversion principle
-
-//defines relationship b/w Low level modules and high lvl modules
-// high lvl modules should not depend upon low level modules
-let RelationShip = Object.freeze({
-  parent: 0,
-  child: 1,
-  sibling: 2
-});
-
-class Person {
-  constructor(name){
-    this.name = name;
-  }
-}
-
-// Low - Level module
-class RelationShips {
-  constructor(){
-    this.data = [];
-  }
-
-  addParentAndChild(parent, child){
-    this.data.push({
-      from: parent,
-      type : RelationShip.parent,
-      to: child
-    })
-  }
-}
-
-let parent = new Person("John");
-let child1 = new Person("Dave");
-let child2 = new Person("lyaila");
-
-let rels = new RelationShips();
-
-rels.addParentAndChild(parent, child1);
-rels.addParentAndChild(parent, child2);
+// function alternate(input){
+//  const check = input.split("\n");
+//  const test_case = check[0];
+//  let res = "";
+//  for(let i=1; i<= test_case; i++){
+//   res+=calculatePerCase(check[(2*i)], check[((2*i)-1)]);
+//   res+="\n";
+//  }
+//  res=res.trim();
+//  console.log(res);
+// }
 
 
-// HIGH level Modules
+// process.stdin.resume();
+// process.stdin.setEncoding("ascii");
+// _input = "";
+// process.stdin.on("data", function (input) {
+//   _input += input;
+// });
 
-class Research {
-  constructor(relationShips){
-    let relations = relationShips.data;
+// process.stdin.on("end", function () {
+//  alternate(_input);
+// });
 
-    for(let rel of relations.filter(r=> r.from.name === 'John' && r.type === RelationShip.parent)){
-      console.log(`John has a child named ${rel.to.name}`);
-    }
-  }
-}
 
-new Research(rels);
+// function splitIt (seperator) {
+//   str = this;
+//   let temp ="";
+//  const res = [];
+//   for(let i=0; i< str.length; i++){
+//     if(seperator){
+//       if(str[i] !== seperator){
+//         temp+=str[i];
+//       }else{
+//         res.push(temp);
+//         temp="";
+//       }
+//     }else {
+//       res.push(str[i]);
+//     }
+//   }
+//   if(temp)
+//   res.push(temp);
+//   return res;
+// }
+
+// String.prototype.splitIt = splitIt;
+// console.log("my name is ---".splitIt(" "));
