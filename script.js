@@ -3090,3 +3090,37 @@ console.log(radixSort(checkArray));
 
 // String.prototype.splitIt = splitIt;
 // console.log("my name is ---".splitIt(" "));
+// Write a split function
+// it should remove all nested arrays and print simple one 1D array
+// const flattenArray =[];
+
+
+// function recursiveFlatten (array) {
+//   for(let i=0; i< array.length; i++){
+//     if(typeof array[i] === 'object'){
+//      recursiveFlatten(array[i])
+//     }else {
+//       console.log(array[i])
+//       flattenArray.push(array[i]);
+//     }
+//   }
+// }
+
+// function flatten () {
+//   arr = this;
+// //   for(let i=0; i<arr.length; i++){
+// //      if(typeof arr[i] === 'object'){
+// // //        recursiveFlatten(arr[i])
+// //        arr[i].flatten();
+// //      }else{
+// //        flattenArray.push(arr[i]);
+// //      }
+// //   }
+// //  return flattenArray;
+//   recursiveFlatten(arr);
+//   return flattenArray;
+// }
+
+// Array.prototype.flatten = flatten;
+// console.log([1,3,5,[4,5,6,[6,23,5,56,2,535,32],34],434].flatten());
+
